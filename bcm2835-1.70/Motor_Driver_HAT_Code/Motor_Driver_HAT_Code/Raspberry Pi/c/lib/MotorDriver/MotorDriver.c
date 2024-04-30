@@ -45,8 +45,9 @@ void Motor_Run(UBYTE motor, DIR dir, UWORD speed)
     if(speed > 100)
         speed = 100;
 
-    if(motor == MOTORA) {
-        DEBUG("Motor A Speed = %d\r\n", speed);
+    switch (motor){
+    case MOTOR_FL:
+        DEBUG("Front Left Motor Speed = %d\r\n", speed);
         PCA9685_SetPwmDutyCycle(PWMA, speed);
         if(dir == FORWARD) {
             DEBUG("forward...\r\n");
@@ -56,9 +57,9 @@ void Motor_Run(UBYTE motor, DIR dir, UWORD speed)
             DEBUG("backward...\r\n");
             PCA9685_SetLevel(AIN1, 1);
             PCA9685_SetLevel(AIN2, 0);
-        }
-    } else {
-        DEBUG("Motor B Speed = %d\r\n", speed);
+    break;
+    case MOTOR_FR:
+        DEBUG("Front Right Motor Speed = %d\r\n", speed);
         PCA9685_SetPwmDutyCycle(PWMB, speed);
         if(dir == FORWARD) {
             DEBUG("forward...\r\n");
@@ -68,7 +69,35 @@ void Motor_Run(UBYTE motor, DIR dir, UWORD speed)
             DEBUG("backward...\r\n");
             PCA9685_SetLevel(BIN1, 1);
             PCA9685_SetLevel(BIN2, 0);
-        }
+     break;
+     case MOTOR_BL:
+	DEBUG("Back Left Motor Speed = %d\r\n", speed);
+        PCA9685_SetPwmDutyCycle(PWMA, speed);
+        if(dir == FORWARD) {
+            DEBUG("forward...\r\n");
+            PCA9685_SetLevel(AIN1, 0);
+            PCA9685_SetLevel(AIN2, 1);
+        } else {
+            DEBUG("backward...\r\n");
+            PCA9685_SetLevel(AIN1, 1);
+            PCA9685_SetLevel(AIN2, 0);
+     break;
+     case MOTOR_BR:
+        DEBUG("Back Right Motor Speed = %d\r\n", speed);
+        PCA9685_SetPwmDutyCycle(PWMA, speed);
+        if(dir == FORWARD) {
+            DEBUG("forward...\r\n");
+            PCA9685_SetLevel(AIN1, 0);
+            PCA9685_SetLevel(AIN2, 1);
+        } else {
+            DEBUG("backward...\r\n");
+            PCA9685_SetLevel(AIN1, 1);
+            PCA9685_SetLevel(AIN2, 0);
+
+     break;
+     default:
+     break;
+
     }
 }
 

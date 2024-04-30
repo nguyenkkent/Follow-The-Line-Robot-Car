@@ -27,8 +27,10 @@
 #define BIN1        PCA_CHANNEL_3
 #define BIN2        PCA_CHANNEL_4
 
-#define MOTORA       0
-#define MOTORB       1
+#define MOTOR_FL       0
+#define MOTOR_FR       1
+#define MOTOR_BL       2 //not sure if 2 and 3 are the right number for this
+#define MOTOR_BR       3
 
 typedef enum {
     FORWARD  = 1,
