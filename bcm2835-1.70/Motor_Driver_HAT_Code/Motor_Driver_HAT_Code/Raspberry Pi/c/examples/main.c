@@ -21,12 +21,12 @@ int main(void)
         exit(0);
     
     //2.Motor Initialization
-    Motor_Init();
+    //Motor_Init();
 
     printf("Motor_Run\r\n");
     Motor_Run(MOTOR_FL, FORWARD, 100);
+    Motor_Run(MOTOR_BL, FORWARD, 100);
     Motor_Run(MOTOR_FR, FORWARD, 100);
-    Motor_Run(MOTOR_BL, FORWARD. 100);
     Motor_Run(MOTOR_BR, FORWARD, 100);
 
     // Exception handling:ctrl + c

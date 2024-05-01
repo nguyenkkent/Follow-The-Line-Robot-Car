@@ -27,8 +27,8 @@ else ifeq ($(USELIB), USE_WIRINGPI_LIB)
 
 endif
 
-test: test.c
-	gcc -o $@ $^ -lpigpio -lpthread -lrt -lm
+#test: test.c
+#	gcc -o $@ $^ -lpigpio -lpthread -lrt -lm
 
 ${TARGET}:${OBJ_O}
 	$(CC) $(CFLAGS) $(OBJ_O) -o $@ $(LIB) -lm

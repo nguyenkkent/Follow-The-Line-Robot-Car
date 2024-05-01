@@ -28,16 +28,20 @@
 #define BIN2        PCA_CHANNEL_4
 
 #define MOTOR_FL       0
-#define MOTOR_FR       1
-#define MOTOR_BL       2 //not sure if 2 and 3 are the right number for this
+#define MOTOR_BL       1
+#define MOTOR_FR       2 //not sure if 2 and 3 are the right number for this
 #define MOTOR_BR       3
+
+#define RIGHT_MOTORS    0x44
+#define LEFT_MOTORS     0x40
 
 typedef enum {
     FORWARD  = 1,
     BACKWARD  ,
+    LEFT,
 } DIR;
 
-void Motor_Init(void);
+void Motor_Init(int motor);
 void Motor_Run(UBYTE motor, DIR dir, UWORD speed);
 void Motor_Stop(UBYTE motor);
 
