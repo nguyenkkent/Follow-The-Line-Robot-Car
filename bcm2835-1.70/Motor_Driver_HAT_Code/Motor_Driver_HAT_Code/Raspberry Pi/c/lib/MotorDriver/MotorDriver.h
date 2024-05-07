@@ -36,9 +36,16 @@
 #define LEFT_MOTORS     0x40
 
 typedef enum {
-    FORWARD  = 1,
-    BACKWARD  ,
-    LEFT,
+    FORWARD  = 0,
+    BACKWARD = 1,
+    LEFT = 2,
+    RIGHT = 3,
+    FRONT_RIGHT_DIAG = 4,
+    FRONT_LEFT_DIAG = 5,
+    BACK_RIGHT_DIAG = 6,
+    BACK_LEFT_DIAG = 7,
+    CIRCLE_RIGHT = 8,
+    CIRCLE_LEFT = 9,
 } DIR;
 
 void Motor_Init(int motor);

@@ -69,11 +69,11 @@ void Motor_Run(UBYTE motor, DIR dir, UWORD speed)
             DEBUG("backward...\r\n");
             PCA9685_SetLevel(AIN1, 1);
             PCA9685_SetLevel(AIN2, 0);
-	    } else if(dir == LEFT){
+	} else if(dir == LEFT){
             DEBUG("Crab Left...\r\n");
             PCA9685_SetLevel(AIN1, 0);
             PCA9685_SetLevel(AIN2, 1);
-	    } else {
+	} else {
             DEBUG("Crab Right...\r\n");
             PCA9685_SetLevel(AIN1, 1);
             PCA9685_SetLevel(AIN2, 0);
@@ -91,11 +91,11 @@ void Motor_Run(UBYTE motor, DIR dir, UWORD speed)
             DEBUG("backward...\r\n");
             PCA9685_SetLevel(BIN1, 1);
             PCA9685_SetLevel(BIN2, 0);
-	    } else if(dir == LEFT){
+	} else if(dir == LEFT){
             DEBUG("Crab Left...\r\n");
             PCA9685_SetLevel(BIN1, 0);
             PCA9685_SetLevel(BIN2, 1);
-	    } else {
+	} else {
             DEBUG("Crab Right...\r\n");
             PCA9685_SetLevel(BIN1, 1);
             PCA9685_SetLevel(BIN2, 0);
