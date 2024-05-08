@@ -1,9 +1,9 @@
 
 #include "main.h"
 
-#define LEFT_LINE_SENSOR 21;
-#define RIGHT_LINE_SENSOR 16;
-#define IR_SENSOR 20;
+#define LEFT_LINE_SENSOR 21
+#define RIGHT_LINE_SENSOR 16
+#define IR_SENSOR 20
 
     
 void  Handler(int signo)
