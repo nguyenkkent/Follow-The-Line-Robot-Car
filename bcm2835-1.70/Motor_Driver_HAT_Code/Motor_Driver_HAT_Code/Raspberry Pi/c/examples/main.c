@@ -32,17 +32,16 @@ int main(void)
         exit(0);
     
     //setup GPIO
-	if (gpioInitialise() == PI_INIT_FAILED){
-		printf("Failed to initialize\n");
-		return 0;
-	}
-    gpioSetMode(LEFT_LINE_SENSOR, PI_INPUT);
-    gpioSetMode(RIGHT_LINE_SENSOR, PI_INPUT);
-    gpioSetMode(IR_SENSOR, PI_INPUT);
+	// if (gpioInitialise() == PI_INIT_FAILED){
+	// 	printf("Failed to initialize\n");
+	// 	return 0;
+	// }
+    // gpioSetMode(LEFT_LINE_SENSOR, PI_INPUT);
+    // gpioSetMode(RIGHT_LINE_SENSOR, PI_INPUT);
+    // gpioSetMode(IR_SENSOR, PI_INPUT);
 
     //start motor
     void goStraight();
-    gpioInitialise();
 
 
     // Exception handling:ctrl + c
