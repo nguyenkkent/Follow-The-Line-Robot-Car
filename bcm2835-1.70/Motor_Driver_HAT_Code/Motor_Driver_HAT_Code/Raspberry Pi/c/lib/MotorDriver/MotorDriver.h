@@ -49,7 +49,7 @@ typedef enum {
 } DIR;
 
 void Motor_Init(int motor);
-void Motor_Run(UBYTE motor, DIR dir, UWORD speed);
+void Motor_Run(DIR dir, UWORD speed);
 void Motor_Stop(UBYTE motor);
 
 #endif
