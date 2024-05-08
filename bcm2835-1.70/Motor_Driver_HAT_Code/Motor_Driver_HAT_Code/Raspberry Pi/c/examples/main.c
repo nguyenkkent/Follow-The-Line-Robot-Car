@@ -1,6 +1,11 @@
 
 #include "main.h"
 
+#define LEFT_LINE_SENSOR 21
+#define RIGHT_LINE_SENSOR 16
+#define IR_SENSOR 20
+
+    
 void  Handler(int signo)
 {
     //System Exit
@@ -14,25 +19,34 @@ void  Handler(int signo)
     exit(0);
 }
 
+
+void goStraight(){
+    printf("Going forward at 100 speed\n");
+    Motor_Run(FORWARD, 100);
+}
+
 int main(void)
 {
     //1.System Initialization
     if(DEV_ModuleInit())
         exit(0);
     
-    //2.Motor Initialization
-    //Motor_Init();
+    //setup GPIO
+	// if (gpioInitialise() == PI_INIT_FAILED){
+	// 	printf("Failed to initialize\n");
+	// 	return 0;
+	// }
+    // gpioSetMode(LEFT_LINE_SENSOR, PI_INPUT);
+    // gpioSetMode(RIGHT_LINE_SENSOR, PI_INPUT);
+    // gpioSetMode(IR_SENSOR, PI_INPUT);
 
-    printf("Motor_Run\r\n");
-    Motor_Run(MOTOR_FL, FORWARD, 100);
-    Motor_Run(MOTOR_BL, FORWARD, 100);
-    Motor_Run(MOTOR_FR, FORWARD, 100);
-    Motor_Run(MOTOR_BR, FORWARD, 100);
+    //start motor
+    void goStraight();
+
 
     // Exception handling:ctrl + c
     signal(SIGINT, Handler);
     while(1) {
-
     }
 
     //3.System Exit
