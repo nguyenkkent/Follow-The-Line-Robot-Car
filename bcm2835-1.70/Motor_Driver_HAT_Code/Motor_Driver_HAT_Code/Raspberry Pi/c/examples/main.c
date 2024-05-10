@@ -40,7 +40,7 @@ void turnRight(){
     printf("Turning right\n");
     int pwm = 100;
     while(gpioRead(IR_SENSOR)){
-        //pwm--;
+        pwm = pwm - 10;
         Motor_Run(FORWARD, 100, 100, pwm, pwm);
     }
     //assertion: car is centered
@@ -96,13 +96,13 @@ int main(void)
     void goStraight();
 
     while (1){
-        if (gpioRead(LEFT_LINE_SENSOR)){
+        if (!gpioRead(LEFT_LINE_SENSOR)){
             turnLeft();
         }
-        if (gpioRead(RIGHT_LINE_SENSOR)){
+        if (!gpioRead(RIGHT_LINE_SENSOR)){
             turnRight();
         }
-        if (gpioRead(IR_SENSOR)){
+        if (!gpioRead(IR_SENSOR)){
             Motor_Stop();
         };
     }
