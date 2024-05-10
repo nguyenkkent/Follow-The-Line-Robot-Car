@@ -22,18 +22,19 @@ void  Handler(int signo)
 /*
  * Elliot's take on this
 */
-/*
-while (!IR_SENSOR){
-	while(LEFT_LINE_SENSOR){
-		Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
-	}
-	while(RIGHT_LINE_SENSOR){
-		Motor_Run(CIRCLE_RIGHT, 100, 100, 100, 100);
-	}
-	Motor_Run(FORWARD, 100, 100, 100, 100);
+void Run(){
+	printf("Running ELliot's function...");
+    while (!IR_SENSOR){
+        while(LEFT_LINE_SENSOR){
+            Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
+        }
+        while(RIGHT_LINE_SENSOR){
+            Motor_Run(CIRCLE_RIGHT, 100, 100, 100, 100);
+        }
+        Motor_Run(FORWARD, 100, 100, 100, 100);
+    }
 }
 
-*/
 //End Elliot's section
 
 
@@ -77,27 +78,6 @@ int main(void)
     //1.System Initialization
     if(DEV_ModuleInit())
         exit(0);
-
-	// Motor_Run(FORWARD, 100, 100, 100, 100);
-    // sleep(5);
-    // Motor_Run(BACKWARD, 100, 100, 100, 100);
-    // sleep(5);
-    // Motor_Run(LEFT, 100, 100, 100, 100);
-    // sleep(5);
-    // Motor_Run(RIGHT, 100, 100, 100, 100);
-    // sleep(5);
-    // Motor_Run(FRONT_RIGHT_DIAG, 100, 100, 100, 100);
-    // sleep(5);
-    // Motor_Run(FRONT_LEFT_DIAG, 100, 100, 100, 100);
-    // sleep(5);
-    // Motor_Run(BACK_RIGHT_DIAG, 100, 100, 100, 100);
-    // sleep(5);
-    // Motor_Run(BACK_LEFT_DIAG, 100, 100, 100, 100);
-    // sleep(5);
-    // Motor_Run(CIRCLE_RIGHT, 100, 100, 100, 100);
-    // sleep(5);
-    // Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
-    // sleep(5);
     
     //setup GPIO
 	if (gpioInitialise() == PI_INIT_FAILED){
@@ -111,7 +91,8 @@ int main(void)
     printf("RIGHT_LINE_SENSOR: %d\n", gpioRead(RIGHT_LINE_SENSOR));
 
     //start motor
-    void goStraight();
+    //void goStraight();
+    Run(); //Elliot's function
 
     while (1){
         if (!gpioRead(LEFT_LINE_SENSOR)){
