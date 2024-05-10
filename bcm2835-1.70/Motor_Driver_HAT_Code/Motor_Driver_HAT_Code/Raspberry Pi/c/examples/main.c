@@ -25,6 +25,7 @@ void goStraight(){
 }
 
 void turnLeft(){
+    printf("Turning left\n");
     int pwm = 100;
     while(gpioRead(IR_SENSOR)){
         pwm = pwm - 10;
@@ -36,6 +37,7 @@ void turnLeft(){
 }
 
 void turnRight(){
+    printf("Turning right\n");
     int pwm = 100;
     while(gpioRead(IR_SENSOR)){
         //pwm--;
@@ -87,6 +89,8 @@ int main(void)
     gpioSetMode(LEFT_LINE_SENSOR, PI_INPUT);
     gpioSetMode(RIGHT_LINE_SENSOR, PI_INPUT);
     gpioSetMode(IR_SENSOR, PI_INPUT);
+    printf("LEFT_LINE_SENSOR: %d\n", gpioRead(LEFT_LINE_SENSOR));
+    printf("RIGHT_LINE_SENSOR: %d\n", gpioRead(RIGHT_LINE_SENSOR));
 
     //start motor
     void goStraight();
@@ -98,6 +102,9 @@ int main(void)
         if (gpioRead(RIGHT_LINE_SENSOR)){
             turnRight();
         }
+        if (gpioRead(IR_SENSOR){
+            Motor_Stop();
+        })
     }
 
     // Exception handling:ctrl + c
