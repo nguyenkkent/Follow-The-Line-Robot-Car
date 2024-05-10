@@ -23,16 +23,25 @@ void  Handler(int signo)
  * Elliot's take on this
 */
 void run(){
-	printf("Running ELliot's function...");
-    while (!IR_SENSOR){
-        while(!LEFT_LINE_SENSOR){
+	int turning = 0;
+	printf("Running Elliot's function...");
+    while (!gpioRead(IR_SENSOR)){
+        while(gpioRead(LEFT_LINE_SENSOR)){
             printf("turning left\n");
-            Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
+	    if(!turning){
+                Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
+		turning = 1;
+	    }
         }
-        while(!RIGHT_LINE_SENSOR){
+
+        while(gpioRead(RIGHT_LINE_SENSOR)){
             printf("turning right\n");
-            Motor_Run(CIRCLE_RIGHT, 100, 100, 100, 100);
+	    if(!turning){
+                Motor_Run(CIRCLE_RIGHT, 100, 100, 100, 100);
+ 	    	turning = 1;
+	    }
         }
+
         printf("go straight again\n");
         Motor_Run(FORWARD, 100, 100, 100, 100);
     }
@@ -92,11 +101,15 @@ int main(void)
     gpioSetMode(IR_SENSOR, PI_INPUT);
     printf("LEFT_LINE_SENSOR: %d\n", gpioRead(LEFT_LINE_SENSOR));
     printf("RIGHT_LINE_SENSOR: %d\n", gpioRead(RIGHT_LINE_SENSOR));
+    printf("IR_SENSOR: %d\n", gpioRead(IR_SENSOR));
 
     //start motor
-    goStraight();
+    //goStraight();
+    //Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
+    //sleep(5);
     run(); //Elliot's function
 
+    /*
     while (1){
         if (!gpioRead(LEFT_LINE_SENSOR)){
             turnLeft();
@@ -107,7 +120,7 @@ int main(void)
         if (!gpioRead(IR_SENSOR)){
             Motor_Stop();
         };
-    }
+    }*/
 
     // Exception handling:ctrl + c
     signal(SIGINT, Handler);
