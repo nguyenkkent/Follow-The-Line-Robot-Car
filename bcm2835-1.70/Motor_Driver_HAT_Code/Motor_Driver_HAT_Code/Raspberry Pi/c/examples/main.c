@@ -102,9 +102,9 @@ int main(void)
         if (gpioRead(RIGHT_LINE_SENSOR)){
             turnRight();
         }
-        if (gpioRead(IR_SENSOR){
+        if (gpioRead(IR_SENSOR)){
             Motor_Stop();
-        })
+        };
     }
 
     // Exception handling:ctrl + c
