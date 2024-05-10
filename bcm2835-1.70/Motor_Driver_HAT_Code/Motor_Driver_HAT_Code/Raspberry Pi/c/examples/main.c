@@ -21,7 +21,7 @@ void  Handler(int signo)
 
 void goStraight(){
     printf("Going forward at 100 speed\n");
-    Motor_Run(FORWARD, 100);
+    //Motor_Run(FORWARD, 100);
 }
 
 void turnLeft(){
@@ -56,6 +56,27 @@ int main(void)
     //1.System Initialization
     if(DEV_ModuleInit())
         exit(0);
+
+	Motor_Run(FORWARD, 100, 100, 100, 100);
+    sleep(5);
+    Motor_Run(BACKWARD, 100, 100, 100, 100);
+    sleep(5);
+    Motor_Run(LEFT, 100, 100, 100, 100);
+    sleep(5);
+    Motor_Run(RIGHT, 100, 100, 100, 100);
+    sleep(5);
+    Motor_Run(FRONT_RIGHT_DIAG, 100, 100, 100, 100);
+    sleep(5);
+    Motor_Run(FRONT_LEFT_DIAG, 100, 100, 100, 100);
+    sleep(5);
+    Motor_Run(BACK_RIGHT_DIAG, 100, 100, 100, 100);
+    sleep(5);
+    Motor_Run(BACK_LEFT_DIAG, 100, 100, 100, 100);
+    sleep(5);
+    Motor_Run(CIRCLE_RIGHT, 100, 100, 100, 100);
+    sleep(5);
+    Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
+    sleep(5);
     
     //setup GPIO
 	if (gpioInitialise() == PI_INIT_FAILED){

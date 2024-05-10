@@ -31,9 +31,9 @@
  * Motor rotation.
  *
  * Example:
- * Motor_Init();
+ * hat_init();
  */
-void Motor_Init(int motor)
+void hat_init(int motor)
 {
     PCA9685_Init(motor);
     PCA9685_SetPWMFreq(100);
@@ -51,175 +51,233 @@ void Motor_Init(int motor)
  * Motor_Run(FORWARD, 50);
  * Motor_Run(BACKWARD, 100);
  */
-void Motor_Run(DIR dir, UWORD speed)
+void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR_speed)
 {
-    if(speed > 100)
-        speed = 100;
+    if(FL_speed > 100){
+        FL_speed = 100;
+    }
+    if(BL_speed > 100){
+        BL_speed = 100;
+    }
+    if(FR_speed > 100){
+        FR_speed = 100;
+    }
+    if(BR_speed > 100){
+        BR_speed = 100;
+    }
 
     switch (dir){
     case FORWARD:
-        DEBUG("Moving Forward = %d\r\n", speed);
-        Motor_Init(LEFT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
-        PCA9685_SetLevel(AIN1, 1);
-        PCA9685_SetLevel(AIN2, 0);
+        DEBUG("Moving Forward...\n");
+        hat_init(LEFT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
+        //Front Left Motor
+        PCA9685_SetLevel(AIN1, 0);
+        PCA9685_SetLevel(AIN2, 1);
+        PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
+        //Back Left Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
-        Motor_Init(RIGHT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
-        PCA9685_SetLevel(AIN1, 1);
-        PCA9685_SetLevel(AIN2, 0);
+        hat_init(RIGHT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
+        PCA9685_SetLevel(AIN1, 0);
+        PCA9685_SetLevel(AIN2, 1);
+        PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
+        //Back Right Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
     break;
 
     case BACKWARD:
-        DEBUG("Moving Backward = %d\r\n", speed);
-        Motor_Init(LEFT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
-        PCA9685_SetLevel(AIN1, 0);
-        PCA9685_SetLevel(AIN2, 1);
+        DEBUG("Moving Backward...\n");
+        hat_init(LEFT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
+        //Front Left Motor
+        PCA9685_SetLevel(AIN1, 1);
+        PCA9685_SetLevel(AIN2, 0);
+        PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
+        //Back Left Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
-        Motor_Init(RIGHT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
-        PCA9685_SetLevel(AIN1, 0);
-        PCA9685_SetLevel(AIN2, 1);
+        hat_init(RIGHT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
+        PCA9685_SetLevel(AIN1, 1);
+        PCA9685_SetLevel(AIN2, 0);
+        PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
+        //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
     break;
     
     case LEFT:
-        DEBUG("Strafing Left = %d\r\n", speed);
-        Motor_Init(LEFT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
-        PCA9685_SetLevel(AIN1, 1);
-        PCA9685_SetLevel(AIN2, 0);
-        PCA9685_SetLevel(BIN1, 0);
-        PCA9685_SetLevel(BIN2, 1);
-        Motor_Init(RIGHT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
+        DEBUG("Moving Left...\n");
+        hat_init(LEFT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
+        //Front Left Motor
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 1);
+        PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
+        //Back Left Motor
+        PCA9685_SetLevel(BIN1, 0);
+        PCA9685_SetLevel(BIN2, 1);
+        hat_init(RIGHT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
+        PCA9685_SetLevel(AIN1, 1);
+        PCA9685_SetLevel(AIN2, 0);
+        PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
+        //Back Right Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
     break;
 
     case RIGHT:
-        DEBUG("Strafing Right = %d\r\n", speed);
-        Motor_Init(LEFT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
-        PCA9685_SetLevel(AIN1, 0);
-        PCA9685_SetLevel(AIN2, 1);
-        PCA9685_SetLevel(BIN1, 1);
-        PCA9685_SetLevel(BIN2, 0);
-        Motor_Init(RIGHT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
+        DEBUG("Moving Right...\n");
+        hat_init(LEFT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
+        //Front Left Motor
         PCA9685_SetLevel(AIN1, 1);
         PCA9685_SetLevel(AIN2, 0);
+        PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
+        //Back Left Motor
+        PCA9685_SetLevel(BIN1, 1);
+        PCA9685_SetLevel(BIN2, 0);
+        hat_init(RIGHT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
+        PCA9685_SetLevel(AIN1, 0);
+        PCA9685_SetLevel(AIN2, 1);
+        PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
+        //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
     break;
 
     case FRONT_LEFT_DIAG:
-        DEBUG("Moving Forward Left at a diagonal = %d\r\n", speed);
-        Motor_Init(LEFT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
-        PCA9685_SetLevel(AIN1, 1);
-        PCA9685_SetLevel(AIN2, 0);
+        DEBUG("Moving Foward Left Diagonal...\n");
+        hat_init(LEFT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
+        //Front Left Motor
+        PCA9685_SetLevel(AIN1, 0);
+        PCA9685_SetLevel(AIN2, 1);
+        PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
+        //Back Left Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 0);
-        Motor_Init(RIGHT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
+        hat_init(RIGHT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 0);
+        PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
+        //Back Right Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
     break;
 
     case FRONT_RIGHT_DIAG:
-        DEBUG("Moving Forward Right at a diagonal = %d\r\n", speed);
-        Motor_Init(LEFT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
+        DEBUG("Moving Forward Right Diagonal...\n");
+        hat_init(LEFT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
+        //Front Left Motor
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 0);
+        PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
+        //Back Left Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
-        Motor_Init(RIGHT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
-        PCA9685_SetLevel(AIN1, 1);
-        PCA9685_SetLevel(AIN2, 0);
+        hat_init(RIGHT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
+        PCA9685_SetLevel(AIN1, 0);
+        PCA9685_SetLevel(AIN2, 1);
+        PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
+        //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 0);
     break;
 
     case BACK_LEFT_DIAG:
-        DEBUG("Moving Backward Left at a diagonal = %d\r\n", speed);
-        Motor_Init(LEFT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
+        DEBUG("Moving Back Left Diagonal...\n");
+        hat_init(LEFT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
+        //Front Left Motor
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 0);
+        PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
+        //Back Left Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
-        Motor_Init(RIGHT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
-        PCA9685_SetLevel(AIN1, 0);
-        PCA9685_SetLevel(AIN2, 1);
+        hat_init(RIGHT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
+        PCA9685_SetLevel(AIN1, 1);
+        PCA9685_SetLevel(AIN2, 0);
+        PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
+        //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 0);
     break;
 
     case BACK_RIGHT_DIAG:
-        DEBUG("Moving Backward Right at a diagonal = %d\r\n", speed);
-        Motor_Init(LEFT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
+        DEBUG("Moving Backward Right Diagonal...\n");
+        hat_init(LEFT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
+        //Front Left Motor
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 1);
+        PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
+        //Back Left Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 0);
-        Motor_Init(RIGHT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
+        hat_init(RIGHT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 0);
+        PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
+        //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
     break;
 
     case CIRCLE_LEFT:
-        DEBUG("Turning Left in place = %d\r\n", speed);
-        Motor_Init(LEFT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
-        PCA9685_SetLevel(AIN1, 0);
-        PCA9685_SetLevel(AIN2, 1);
-        PCA9685_SetLevel(BIN1, 0);
-        PCA9685_SetLevel(BIN2, 1);
-        Motor_Init(RIGHT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
+        DEBUG("Moving Forward...\n");
+        hat_init(LEFT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
+        //Front Left Motor
         PCA9685_SetLevel(AIN1, 1);
         PCA9685_SetLevel(AIN2, 0);
+        PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
+        //Back Left Motor
+        PCA9685_SetLevel(BIN1, 0);
+        PCA9685_SetLevel(BIN2, 1);
+        hat_init(RIGHT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
+        PCA9685_SetLevel(AIN1, 0);
+        PCA9685_SetLevel(AIN2, 1);
+        PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
+        //Back Right Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
     break;
 
     case CIRCLE_RIGHT:
-        DEBUG("Turning Right in place = %d\r\n", speed);
-        Motor_Init(LEFT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
-        PCA9685_SetLevel(AIN1, 1);
-        PCA9685_SetLevel(AIN2, 0);
-        PCA9685_SetLevel(BIN1, 1);
-        PCA9685_SetLevel(BIN2, 0);
-        Motor_Init(RIGHT_MOTORS);
-        PCA9685_SetPwmDutyCycle(PWMA, speed);
+        DEBUG("Moving Forward...\n");
+        hat_init(LEFT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
+        //Front Left Motor
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 1);
+        PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
+        //Back Left Motor
+        PCA9685_SetLevel(BIN1, 1);
+        PCA9685_SetLevel(BIN2, 0);
+        hat_init(RIGHT_MOTORS);
+        PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
+        PCA9685_SetLevel(AIN1, 1);
+        PCA9685_SetLevel(AIN2, 0);
+        PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
+        //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
-    break;
 
     default:
     break;
-
     }
 }
 
@@ -234,9 +292,10 @@ void Motor_Run(DIR dir, UWORD speed)
  */
 void Motor_Stop(UBYTE motor)
 {
-    if(motor == MOTOR_FL) {
-        PCA9685_SetPwmDutyCycle(PWMA, 0);
-    } else {
-        PCA9685_SetPwmDutyCycle(PWMB, 0);
-    }
+    hat_init(RIGHT_MOTORS);
+    PCA9685_SetPwmDutyCycle(PWMA, 0);
+    PCA9685_SetPwmDutyCycle(PWMB, 0);
+    hat_init(LEFT_MOTORS);
+    PCA9685_SetPwmDutyCycle(PWMA, 0);
+    PCA9685_SetPwmDutyCycle(PWMB, 0);
 }
