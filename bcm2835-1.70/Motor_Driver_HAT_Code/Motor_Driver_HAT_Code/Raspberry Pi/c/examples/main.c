@@ -22,15 +22,18 @@ void  Handler(int signo)
 /*
  * Elliot's take on this
 */
-void Run(){
+void run(){
 	printf("Running ELliot's function...");
     while (!IR_SENSOR){
-        while(LEFT_LINE_SENSOR){
+        while(!LEFT_LINE_SENSOR){
+            printf("turning left\n");
             Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
         }
-        while(RIGHT_LINE_SENSOR){
+        while(!RIGHT_LINE_SENSOR){
+            printf("turning right\n");
             Motor_Run(CIRCLE_RIGHT, 100, 100, 100, 100);
         }
+        printf("go straight again\n");
         Motor_Run(FORWARD, 100, 100, 100, 100);
     }
 }
@@ -40,7 +43,7 @@ void Run(){
 
 void goStraight(){
     printf("Going forward at 100 speed\n");
-    //Motor_Run(FORWARD, 100);
+    Motor_Run(FORWARD, 100, 100, 100, 100);
 }
 
 void turnLeft(){
@@ -91,8 +94,8 @@ int main(void)
     printf("RIGHT_LINE_SENSOR: %d\n", gpioRead(RIGHT_LINE_SENSOR));
 
     //start motor
-    //void goStraight();
-    Run(); //Elliot's function
+    goStraight();
+    run(); //Elliot's function
 
     while (1){
         if (!gpioRead(LEFT_LINE_SENSOR)){
