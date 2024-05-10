@@ -19,6 +19,24 @@ void  Handler(int signo)
     exit(0);
 }
 
+/*
+ * Elliot's take on this
+*/
+/*
+while (!IR_SENSOR){
+	while(LEFT_LINE_SENSOR){
+		Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
+	}
+	while(RIGHT_LINE_SENSOR){
+		Motor_Run(CIRCLE_RIGHT, 100, 100, 100, 100);
+	}
+	Motor_Run(FORWARD, 100, 100, 100, 100);
+}
+
+*/
+//End Elliot's section
+
+
 void goStraight(){
     printf("Going forward at 100 speed\n");
     //Motor_Run(FORWARD, 100);
