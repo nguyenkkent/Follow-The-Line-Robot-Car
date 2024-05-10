@@ -290,7 +290,7 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
  * @code
  * Motor_Stop(MOTORA);
  */
-void Motor_Stop(UBYTE motor)
+void Motor_Stop()
 {
     hat_init(RIGHT_MOTORS);
     PCA9685_SetPwmDutyCycle(PWMA, 0);

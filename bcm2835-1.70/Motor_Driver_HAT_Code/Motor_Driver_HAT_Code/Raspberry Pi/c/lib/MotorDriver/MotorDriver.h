@@ -50,6 +50,6 @@ typedef enum {
 
 void hat_init(int motor);
 void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR_speed);
-void Motor_Stop(UBYTE motor);
+void Motor_Stop();
 
 #endif
