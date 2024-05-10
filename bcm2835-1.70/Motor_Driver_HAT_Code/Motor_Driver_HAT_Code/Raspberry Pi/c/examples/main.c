@@ -27,7 +27,7 @@ void goStraight(){
 void turnLeft(){
     printf("Turning left\n");
     int pwm = 100;
-    while(gpioRead(IR_SENSOR)){
+    while(gpioRead(!LEFT_LINE_SENSOR)){
         pwm = pwm - 10;
         Motor_Run(FORWARD, pwm, pwm, 100, 100);
     }
@@ -39,7 +39,7 @@ void turnLeft(){
 void turnRight(){
     printf("Turning right\n");
     int pwm = 100;
-    while(gpioRead(IR_SENSOR)){
+    while(gpioRead(!RIGHT_LINE_SENSOR)){
         pwm = pwm - 10;
         Motor_Run(FORWARD, 100, 100, pwm, pwm);
     }
