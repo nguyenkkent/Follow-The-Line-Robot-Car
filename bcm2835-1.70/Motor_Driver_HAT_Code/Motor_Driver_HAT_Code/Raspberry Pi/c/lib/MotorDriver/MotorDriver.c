@@ -68,7 +68,7 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
 
     switch (dir){
     case FORWARD:
-        DEBUG("Moving Forward...\n");
+        //DEBUG("Moving Forward...\n");
         hat_init(LEFT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
         //Front Left Motor
@@ -86,10 +86,10 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
-    break;
+        break;
 
     case BACKWARD:
-        DEBUG("Moving Backward...\n");
+        //DEBUG("Moving Backward...\n");
         hat_init(LEFT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
         //Front Left Motor
@@ -107,10 +107,10 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
-    break;
+        break;
     
     case LEFT:
-        DEBUG("Moving Left...\n");
+        //DEBUG("Moving Left...\n");
         hat_init(LEFT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
         //Front Left Motor
@@ -128,10 +128,10 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
-    break;
+        break;
 
     case RIGHT:
-        DEBUG("Moving Right...\n");
+        //DEBUG("Moving Right...\n");
         hat_init(LEFT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
         //Front Left Motor
@@ -149,10 +149,10 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
-    break;
-    
+        break;
+
     case FRONT_LEFT_DIAG:
-        DEBUG("Moving Foward Left Diagonal...\n");
+        //DEBUG("Moving Foward Left Diagonal...\n");
         hat_init(LEFT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
         //Front Left Motor
@@ -170,10 +170,10 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
-    break;
+        break;
 
     case FRONT_RIGHT_DIAG:
-        DEBUG("Moving Forward Right Diagonal...\n");
+        //DEBUG("Moving Forward Right Diagonal...\n");
         hat_init(LEFT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
         //Front Left Motor
@@ -191,10 +191,10 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 0);
-    break;
+        break;
 
     case BACK_LEFT_DIAG:
-        DEBUG("Moving Back Left Diagonal...\n");
+        //DEBUG("Moving Back Left Diagonal...\n");
         hat_init(LEFT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
         //Front Left Motor
@@ -212,10 +212,10 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 0);
-    break;
+        break;
 
     case BACK_RIGHT_DIAG:
-        DEBUG("Moving Backward Right Diagonal...\n");
+        //DEBUG("Moving Backward Right Diagonal...\n");
         hat_init(LEFT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
         //Front Left Motor
@@ -233,10 +233,10 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
-    break;
+        break;
 
     case CIRCLE_LEFT:
-        DEBUG("Moving Forward...\n");
+        //DEBUG("Moving Forward...\n");
         hat_init(LEFT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
         //Front Left Motor
@@ -254,10 +254,10 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
-    break;
+        break;
 
     case CIRCLE_RIGHT:
-        DEBUG("Moving Forward...\n");
+        //DEBUG("Moving Forward...\n");
         hat_init(LEFT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
         //Front Left Motor
@@ -275,7 +275,7 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
-
+        break;
     default:
     break;
     }
