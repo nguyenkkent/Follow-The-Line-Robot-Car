@@ -26,29 +26,31 @@ void goStraight(){
 
 void turnLeft(){
     int pwm = 100;
+    int pwm = 100;
     while(gpioRead(IR_SENSOR)){
         pwm = pwm - 10;
-        //DECREASE LEFT MOTOR
+        Motor_Run(FORWARD, pwm, pwm, 100, 100);
     }
     //assertion: car is centered
     //motor foward 100%
+    Motor_Run(FORWARD, 100, 100, 100, 100);
 }
 
 void turnRight(){
     int pwm = 100;
     while(gpioRead(IR_SENSOR)){
         pwm = pwm - 10;
-        //DECREASE RIGHT MOTOR
+        Motor_Run(FORWARD, 100, 100, pwm, pwm);
     }
     //assertion: car is centered
     //motor foward 100%
+    Motor_Run(FORWARD, 100, 100, 100, 100);
 }
 
 
 void crab(){
     /*
     left front and back right motor set to
-
     */
 }
 int main(void)
@@ -90,6 +92,14 @@ int main(void)
     //start motor
     void goStraight();
 
+    while (1){
+        if (gpioRead(LEFT_LINE_SENSOR)){
+            turnLeft();
+        }
+        if (gpioRead(RIGHT_LINE_SENSOR)){
+            turnRight();
+        }
+    }
 
     // Exception handling:ctrl + c
     signal(SIGINT, Handler);

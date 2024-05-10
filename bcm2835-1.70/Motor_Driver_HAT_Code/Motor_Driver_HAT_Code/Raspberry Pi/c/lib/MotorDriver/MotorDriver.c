@@ -150,7 +150,7 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
     break;
-
+    
     case FRONT_LEFT_DIAG:
         DEBUG("Moving Foward Left Diagonal...\n");
         hat_init(LEFT_MOTORS);
