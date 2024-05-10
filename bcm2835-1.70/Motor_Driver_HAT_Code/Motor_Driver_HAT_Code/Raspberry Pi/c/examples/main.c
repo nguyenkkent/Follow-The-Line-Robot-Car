@@ -26,7 +26,6 @@ void goStraight(){
 
 void turnLeft(){
     int pwm = 100;
-    int pwm = 100;
     while(gpioRead(IR_SENSOR)){
         pwm = pwm - 10;
         Motor_Run(FORWARD, pwm, pwm, 100, 100);
@@ -39,7 +38,7 @@ void turnLeft(){
 void turnRight(){
     int pwm = 100;
     while(gpioRead(IR_SENSOR)){
-        pwm = pwm - 10;
+        //pwm--;
         Motor_Run(FORWARD, 100, 100, pwm, pwm);
     }
     //assertion: car is centered
