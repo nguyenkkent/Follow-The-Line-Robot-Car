@@ -48,8 +48,8 @@ typedef enum {
     CIRCLE_LEFT = 9,
 } DIR;
 
-void Motor_Init(int motor);
-void Motor_Run(DIR dir, UWORD speed);
+void hat_init(int motor);
+void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR_speed);
 void Motor_Stop(UBYTE motor);
 
 #endif
