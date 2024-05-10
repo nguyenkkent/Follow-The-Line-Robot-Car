@@ -31,7 +31,7 @@ endif
 #	gcc -o $@ $^ -lpigpio -lpthread -lrt -lm
 
 ${TARGET}:${OBJ_O}
-	$(CC) $(CFLAGS) $(OBJ_O) -o $@ $(LIB) -lm
+	$(CC) $(CFLAGS) $(OBJ_O) -o $@ $(LIB) -lm -lpigpio
 
 ${DIR_BIN}/%.o : $(DIR_Examples)/%.c
 	$(CC) $(CFLAGS) -c  $< -o $@ $(LIB) -I $(DIR_OBJ) -I $(DIR_Config) -I $(DIR_MotorDriver) -I $(DIR_PCA9685)
