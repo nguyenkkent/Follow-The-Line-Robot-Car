@@ -22,10 +22,13 @@ void  Handler(int signo)
 /*
  * Elliot's take on this
 */
+
+//While the IR sensor has not detected anything..
 void run(){
 	int turning = 0;
 	printf("Running Elliot's function...");
     while (!gpioRead(IR_SENSOR)){
+        //..and while the left line sensor has not detected anything..
         while(gpioRead(LEFT_LINE_SENSOR)){
             printf("turning left\n");
 	    if(!turning){
@@ -33,7 +36,7 @@ void run(){
 		turning = 1;
 	    }
         }
-
+        //..and while the right line sensor has not detected anything..
         while(gpioRead(RIGHT_LINE_SENSOR)){
             printf("turning right\n");
 	    if(!turning){
@@ -41,20 +44,25 @@ void run(){
  	    	turning = 1;
 	    }
         }
+        //..turning for both is set to 1 so it does not keep moving in that direction
+        turning = 0;
 
         printf("go straight again\n");
         Motor_Run(FORWARD, 100, 100, 100, 100);
     }
 }
 
-//End Elliot's section
+//End of Elliot's section
 
+//ALL of the below is an older version of the above. We left it just in-case
 
+//This function lets the car move forward.. duh
 void goStraight(){
     printf("Going forward at 100 speed\n");
     Motor_Run(FORWARD, 100, 100, 100, 100);
 }
 
+//This function lets the car move left
 void turnLeft(){
     printf("Turning left\n");
     int pwm = 100;
@@ -65,7 +73,7 @@ void turnLeft(){
     //assertion: car is centered
     //motor foward 100%
     Motor_Run(FORWARD, 100, 100, 100, 100);
-}
+} //First we gotta turn the wheels left, and then we move the car forward in the left direction
 
 void turnRight(){
     printf("Turning right\n");
@@ -77,7 +85,7 @@ void turnRight(){
     //assertion: car is centered
     //motor foward 100%
     Motor_Run(FORWARD, 100, 100, 100, 100);
-}
+} //First we gotta turn the wheels left, and then we move the car forward in the left direction 
 
 
 void crab(){
