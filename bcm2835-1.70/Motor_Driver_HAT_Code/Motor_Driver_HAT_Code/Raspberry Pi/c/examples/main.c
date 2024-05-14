@@ -25,7 +25,7 @@ void  Handler(int signo)
 void run(){
 	int turning = 0;
 	printf("Running Elliot's function...");
-    while (!gpioRead(IR_SENSOR)){
+    while (gpioRead(IR_SENSOR)){
         while(gpioRead(LEFT_LINE_SENSOR)){
             printf("turning left\n");
 	    if(!turning){
