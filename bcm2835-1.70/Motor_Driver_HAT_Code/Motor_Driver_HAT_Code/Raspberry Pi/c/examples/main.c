@@ -28,32 +28,36 @@ void run(){
 	int turning = 0;
 	printf("Running Elliot's function...");
 	Motor_Run(FORWARD, 100, 100, 100, 100);
-    while (gpioRead(IR_SENSOR)){
-	printf("IR SENSOR VALUE %d/n", gpioRead(IR_SENSOR));
-        //..and while the left line sensor has not detected anything..
-        while(gpioRead(LEFT_LINE_SENSOR)){
-            printf("left sensor value %d\n", gpioRead(LEFT_LINE_SENSOR));
-	   // if(!turning){
-                Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
-		//turning = 1;
-	    //}
-        }
-        //..and while the right line sensor has not detected anything..
-        while(gpioRead(RIGHT_LINE_SENSOR)){
+        while (gpioRead(IR_SENSOR)){
+          	printf("IR SENSOR VALUE %d/n", gpioRead(IR_SENSOR));
+               //..and while the left line sensor has not detected anything..
+		while (gpioRead(LEFT_LINE_SENSOR) && gpioRead( RIGHT_LINE_SENSOR)){
+	        	printf("both sensors detected\n");
+	      		Motor_Run(FORWARD, 100, 100, 100, 100);
 
-            printf("right sensor value %d\n", gpioRead(RIGHT_LINE_SENSOR));
-	    if(!turning){
-                Motor_Run(CIRCLE_RIGHT, 100, 100, 100, 100);
- 	    	turning = 1;
-	    }
-        }
-        //..turning for both is set to 1 so it does not keep moving in that direction
-        turning = 0;
+			}       
+       		while(gpioRead(LEFT_LINE_SENSOR)){
+            		printf("left sensor value %d\n", gpioRead(LEFT_LINE_SENSOR));
+	  		// if(!turning){
+                	Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
+			//turning = 1;
+	    		//}
+        		}
+        		//..and while the right line sensor has not detected anything..
+        	while(gpioRead(RIGHT_LINE_SENSOR)){
 
-        printf("go straight again\n");
-        Motor_Run(FORWARD, 100, 100, 100, 100);
-    }
-	printf("It is running rn");
+            		printf("right sensor value %d\n", gpioRead(RIGHT_LINE_SENSOR));
+			//  if(!turning){
+                	Motor_Run(CIRCLE_RIGHT, 100, 100, 100, 100);
+ 	    		//turning = 1;
+        		}
+        		//..turning for both is set to 1 so it does not keep moving in that direction
+        		//turning = 0;
+
+        	printf("go straight again\n");
+        	Motor_Run(FORWARD, 100, 100, 100, 100);
+   		 }
+		printf("It is running rn");
 }
 
 //End of Elliot's section
@@ -121,7 +125,11 @@ int main(void)
     //sleep(5);
     run(); //Elliot's function
     
-    //3.System Exit
+	if (!gpioRead(IR_SENSOR)){
+        	    Motor_Stop();
+       	 };
+ 
+   //3.System Exit
     DEV_ModuleExit();
     return 0;
 }
