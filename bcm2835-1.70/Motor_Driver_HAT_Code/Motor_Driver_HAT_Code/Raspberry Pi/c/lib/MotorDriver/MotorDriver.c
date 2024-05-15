@@ -74,18 +74,22 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Front Left Motor
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 1);
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
         //Back Left Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
+        DEV_ModuleExit();
         hat_init(RIGHT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 1);
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
+        DEV_ModuleExit();
         break;
 
     case BACKWARD:
@@ -95,18 +99,22 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Front Left Motor
         PCA9685_SetLevel(AIN1, 1);
         PCA9685_SetLevel(AIN2, 0);
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
         //Back Left Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
+        DEV_ModuleExit();
         hat_init(RIGHT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
         PCA9685_SetLevel(AIN1, 1);
-        PCA9685_SetLevel(AIN2, 0);
+        PCA9685_SetLevel(AIN2, 0);        
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
+        DEV_ModuleExit();
         break;
     
     case LEFT:
@@ -115,19 +123,23 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         PCA9685_SetPwmDutyCycle(PWMA, FL_speed);
         //Front Left Motor
         PCA9685_SetLevel(AIN1, 0);
-        PCA9685_SetLevel(AIN2, 1);
+        PCA9685_SetLevel(AIN2, 1);        
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
         //Back Left Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
-        hat_init(RIGHT_MOTORS);
+        DEV_ModuleExit();
+        hat_init(RIGHT_MOTORS);        
         PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
         PCA9685_SetLevel(AIN1, 1);
-        PCA9685_SetLevel(AIN2, 0);
+        PCA9685_SetLevel(AIN2, 0);        
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
+        DEV_ModuleExit();
         break;
 
     case RIGHT:
@@ -137,18 +149,22 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Front Left Motor
         PCA9685_SetLevel(AIN1, 1);
         PCA9685_SetLevel(AIN2, 0);
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
         //Back Left Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
+        DEV_ModuleExit();
         hat_init(RIGHT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 1);
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
+        DEV_ModuleExit();
         break;
 
     case FRONT_LEFT_DIAG:
@@ -158,18 +174,22 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Front Left Motor
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 1);
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
         //Back Left Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 0);
+        DEV_ModuleExit();
         hat_init(RIGHT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 0);
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
+        DEV_ModuleExit();
         break;
 
     case FRONT_RIGHT_DIAG:
@@ -179,18 +199,22 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Front Left Motor
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 0);
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
         //Back Left Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
+        DEV_ModuleExit();
         hat_init(RIGHT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 1);
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 0);
+        DEV_ModuleExit();
         break;
 
     case BACK_LEFT_DIAG:
@@ -201,17 +225,21 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 0);
         PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
+        DEV_ModuleExit();
         //Back Left Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
+        DEV_ModuleExit();
         hat_init(RIGHT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
         PCA9685_SetLevel(AIN1, 1);
         PCA9685_SetLevel(AIN2, 0);
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 0);
+        DEV_ModuleExit();
         break;
 
     case BACK_RIGHT_DIAG:
@@ -221,18 +249,22 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Front Left Motor
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 1);
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
         //Back Left Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 0);
+        DEV_ModuleExit();
         hat_init(RIGHT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 0);
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
+        DEV_ModuleExit();
         break;
 
     case CIRCLE_LEFT:
@@ -242,18 +274,23 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Front Left Motor
         PCA9685_SetLevel(AIN1, 1);
         PCA9685_SetLevel(AIN2, 0);
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
         //Back Left Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
+        DEV_ModuleExit();
         hat_init(RIGHT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 1);
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
+        DEV_ModuleExit();
+
         break;
 
     case CIRCLE_RIGHT:
@@ -263,18 +300,23 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Front Left Motor
         PCA9685_SetLevel(AIN1, 0);
         PCA9685_SetLevel(AIN2, 1);
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BL_speed);
         //Back Left Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
+        DEV_ModuleExit();
         hat_init(RIGHT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
         PCA9685_SetLevel(AIN1, 1);
         PCA9685_SetLevel(AIN2, 0);
+        DEV_ModuleExit();
         PCA9685_SetPwmDutyCycle(PWMB, BR_speed);
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
+        DEV_ModuleExit();
+        
         break;
     default:
     break;
@@ -295,7 +337,9 @@ void Motor_Stop()
     hat_init(RIGHT_MOTORS);
     PCA9685_SetPwmDutyCycle(PWMA, 0);
     PCA9685_SetPwmDutyCycle(PWMB, 0);
+    DEV_ModuleExit();
     hat_init(LEFT_MOTORS);
     PCA9685_SetPwmDutyCycle(PWMA, 0);
     PCA9685_SetPwmDutyCycle(PWMB, 0);
+    DEV_ModuleExit();
 }
