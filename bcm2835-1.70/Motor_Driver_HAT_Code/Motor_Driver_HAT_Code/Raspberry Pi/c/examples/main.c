@@ -34,8 +34,7 @@ void run(){
 		while (gpioRead(LEFT_LINE_SENSOR) && gpioRead( RIGHT_LINE_SENSOR)){
 	        	printf("both sensors detected\n");
 	      		Motor_Run(FORWARD, 100, 100, 100, 100);
-
-			}       
+			}
        		while(gpioRead(LEFT_LINE_SENSOR)){
             		printf("left sensor value %d\n", gpioRead(LEFT_LINE_SENSOR));
 	  		// if(!turning){
@@ -130,7 +129,7 @@ int main(void)
        	 };
  
    //3.System Exit
-    DEV_ModuleExit();
+   // DEV_ModuleExit();
     return 0;
 }
 
