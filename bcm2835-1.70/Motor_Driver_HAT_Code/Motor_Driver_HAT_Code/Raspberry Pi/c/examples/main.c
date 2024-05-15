@@ -4,7 +4,16 @@
 #define LEFT_LINE_SENSOR 21
 #define RIGHT_LINE_SENSOR 16
 #define IR_SENSOR 20
-
+/*
+How to handle when both line sensors are triggered:
+1. Keep track of what the last movement call as (move left or right)
+2. if both line sensors are triggered then move the car the in the OPPOSITE direction of the most recent
+movement. For example if the last call was to turn right, there are three possbilities.
+	2a. if the line keeps going right then we're good, no adjustment needed
+ 	2b. if the line goes go straight and both line sensors are detected, this means that
+  	    our car is pointed too far to the right and we need to turn hard left to re-center
+        2c. if the goes left, then again the car is pointed too much "right" and we need to turn left to recenter.
+*/
     
 void  Handler(int signo)
 {
