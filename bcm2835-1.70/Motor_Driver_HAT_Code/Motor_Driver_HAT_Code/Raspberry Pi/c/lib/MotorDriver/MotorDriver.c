@@ -334,10 +334,12 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
  */
 void Motor_Stop()
 {
+    //halting right motors
     hat_init(RIGHT_MOTORS);
     PCA9685_SetPwmDutyCycle(PWMA, 0);
     PCA9685_SetPwmDutyCycle(PWMB, 0);
     DEV_ModuleExit();
+    //halting left motors
     hat_init(LEFT_MOTORS);
     PCA9685_SetPwmDutyCycle(PWMA, 0);
     PCA9685_SetPwmDutyCycle(PWMB, 0);
