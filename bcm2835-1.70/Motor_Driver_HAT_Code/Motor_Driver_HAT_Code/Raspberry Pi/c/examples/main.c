@@ -12,7 +12,7 @@ movement. For example if the last call was to turn right, there are three possbi
 	2a. if the line keeps going right then we're good, no adjustment needed
  	2b. if the line goes go straight and both line sensors are detected, this means that
   	    our car is pointed too far to the right and we need to turn hard left to re-center
-        2c. if the goes left, then again the car is pointed too much "right" and we need to turn left to recenter.
+    2c. if the goes left, then again the car is pointed too much "right" and we need to turn left to recenter.
 */
     
 void  Handler(int signo)
@@ -55,7 +55,7 @@ void run(){
         	while(gpioRead(RIGHT_LINE_SENSOR)){
 
             		printf("right sensor value %d\n", gpioRead(RIGHT_LINE_SENSOR));
-			//  if(!turning){
+			    //if(!turning){
                 	Motor_Run(CIRCLE_RIGHT, 100, 100, 100, 100);
  	    		//turning = 1;
         		}
@@ -141,4 +141,3 @@ int main(void)
    // DEV_ModuleExit();
     return 0;
 }
-
