@@ -59,13 +59,13 @@ void run(){
 			}
        		while(gpioRead(LEFT_LINE_SENSOR)){
             		//printf("left sensor value %d\n", gpioRead(LEFT_LINE_SENSOR));
-                	Motor_Run(CIRCLE_LEFT, 100, 100, 0, 0);
+                	Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
                     lastDirection = 1;
         		}
         		//..and while the right line sensor has not detected anything..
         	while(gpioRead(RIGHT_LINE_SENSOR)){
             		//printf("right sensor value %d\n", gpioRead(RIGHT_LINE_SENSOR));
-                	Motor_Run(CIRCLE_RIGHT, 0, 0, 100, 100);
+                	Motor_Run(CIRCLE_RIGHT, 100, 100, 100, 100);
                     lastDirection = 2;
         		}
         		//..turning for both is set to 1 so it does not keep moving in that direction
