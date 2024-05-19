@@ -74,8 +74,8 @@ void run(){
         	Motor_Run(FORWARD, 100, 100, 100, 100);
    		}
 
-        printf("IR SENSOR VALUE OUTSIDE OUTER WHILE-LOOP: %d/n", gpioRead(IR_SENSOR));
-		// printf("It is running rn");
+        printf("Run function ending, calling MotorStop()\n");
+        Motor_Stop();
 }
 
 //End of Elliot's section
@@ -188,7 +188,7 @@ int main(void)
     //start motor
     // run(); 
     //testMovements();
-    testIRSensor();
+    // testIRSensor();
 
 
     signal(SIGINT, Handler);
