@@ -37,10 +37,11 @@ void run(){
 	int turning = 0;
 	printf("Running Elliot's function...");
 	Motor_Run(FORWARD, 100, 100, 100, 100);
+    printf("IR SENSOR VALUE %d/n", gpioRead(IR_SENSOR));
         while (gpioRead(IR_SENSOR)){
-          	printf("IR SENSOR VALUE %d/n", gpioRead(IR_SENSOR));
+          	
                //..and while the left line sensor has not detected anything..
-		while (gpioRead(LEFT_LINE_SENSOR) && gpioRead( RIGHT_LINE_SENSOR)){
+		    while (gpioRead(LEFT_LINE_SENSOR) && gpioRead( RIGHT_LINE_SENSOR)){
 	        	printf("both sensors detected\n");
 	      		Motor_Run(FORWARD, 100, 100, 100, 100);
 			}
@@ -62,10 +63,12 @@ void run(){
         		//..turning for both is set to 1 so it does not keep moving in that direction
         		//turning = 0;
 
-        	printf("go straight again\n");
+        	//printf("go straight again\n");
         	Motor_Run(FORWARD, 100, 100, 100, 100);
-   		 }
-		printf("It is running rn");
+   		}
+
+        printf("IR SENSOR VALUE OUTSIDE OUTER WHILE-LOOP: %d/n", gpioRead(IR_SENSOR));
+		// printf("It is running rn");
 }
 
 //End of Elliot's section
@@ -128,11 +131,11 @@ int main(void)
     printf("IR_SENSOR: %d\n", gpioRead(IR_SENSOR));
 
     //start motor
-    run(); //Elliot's function
+    // run(); //Elliot's function
     
-
+    
    //3.System Exit
-   Motor_Stop();
+   //Motor_Stop();
    // DEV_ModuleExit();
     return 0;
 }
