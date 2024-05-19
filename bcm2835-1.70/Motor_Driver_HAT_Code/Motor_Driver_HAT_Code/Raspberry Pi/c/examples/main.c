@@ -28,9 +28,6 @@ void  Handler(int signo)
     exit(0);
 }
 
-/*
- * Elliot's take on this
-*/
 
 //While the IR sensor has not detected anything..
 void run(){
@@ -38,30 +35,26 @@ void run(){
 	printf("Running Elliot's function...");
 	Motor_Run(FORWARD, 100, 100, 100, 100);
     printf("IR SENSOR VALUE %d/n", gpioRead(IR_SENSOR));
+    int lastDirection = 0; // 1==left, 2==right
         while (gpioRead(IR_SENSOR)){
-          	
                //..and while the left line sensor has not detected anything..
 		    while (gpioRead(LEFT_LINE_SENSOR) && gpioRead( RIGHT_LINE_SENSOR)){
+                
 	        	printf("both sensors detected\n");
 	      		Motor_Run(FORWARD, 100, 100, 100, 100);
 			}
        		while(gpioRead(LEFT_LINE_SENSOR)){
             		printf("left sensor value %d\n", gpioRead(LEFT_LINE_SENSOR));
-	  		// if(!turning){
                 	Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
-			//turning = 1;
-	    		//}
+                    lastDirection = 1;
         		}
         		//..and while the right line sensor has not detected anything..
         	while(gpioRead(RIGHT_LINE_SENSOR)){
-
             		printf("right sensor value %d\n", gpioRead(RIGHT_LINE_SENSOR));
-			    //if(!turning){
                 	Motor_Run(CIRCLE_RIGHT, 100, 100, 100, 100);
- 	    		//turning = 1;
+                    lastDirection = 2;
         		}
         		//..turning for both is set to 1 so it does not keep moving in that direction
-        		//turning = 0;
 
         	//printf("go straight again\n");
         	Motor_Run(FORWARD, 100, 100, 100, 100);
@@ -105,7 +98,40 @@ void turnRight(){
     //motor foward 100%
     Motor_Run(FORWARD, 100, 100, 100, 100);
 } //First we gotta turn the wheels left, and then we move the car forward in the left direction 
+void testMovements(){
 
+    printf("Moving FORWARD\n");
+	Motor_Run(FORWARD, 100, 100, 100, 100);
+    sleep(5);
+    printf("Moving BACKWARDS\n");
+    Motor_Run(BACKWARD, 100, 100, 100, 100);
+    sleep(5);
+    printf("Moving LEFT\n");
+    Motor_Run(LEFT, 100, 100, 100, 100);
+    sleep(5);
+    printf("Moving RIGHT\n");
+    Motor_Run(RIGHT, 100, 100, 100, 100);
+    sleep(5);
+    printf("Moving FRONT_RIGHT_DIAG\n");
+    Motor_Run(FRONT_RIGHT_DIAG, 100, 100, 100, 100);
+    sleep(5);
+    printf("Moving FRONT_LEFT_DIAG\n");
+    Motor_Run(FRONT_LEFT_DIAG, 100, 100, 100, 100);
+    sleep(5);
+    printf("Moving BACK_RIGHT_DIAG\n");
+    Motor_Run(BACK_RIGHT_DIAG, 100, 100, 100, 100);
+    sleep(5);
+    printf("Moving BACK_LEFT_DIAG\n");
+    Motor_Run(BACK_LEFT_DIAG, 100, 100, 100, 100);
+    sleep(5);
+    printf("Moving CIRCLE_RIGHT\n");
+    Motor_Run(CIRCLE_RIGHT, 100, 100, 100, 100);
+    sleep(5);
+    printf("Moving CIRCLE_LEFT\n");
+    Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
+    sleep(5);
+
+}
 
 void crab(){
     /*
@@ -126,6 +152,11 @@ int main(void)
     gpioSetMode(LEFT_LINE_SENSOR, PI_INPUT);
     gpioSetMode(RIGHT_LINE_SENSOR, PI_INPUT);
     gpioSetMode(IR_SENSOR, PI_INPUT);
+
+    /*
+    line sensor 0 means no black line detected
+    IR sensor 1 means no obstacle detected
+    */
     printf("LEFT_LINE_SENSOR: %d\n", gpioRead(LEFT_LINE_SENSOR));
     printf("RIGHT_LINE_SENSOR: %d\n", gpioRead(RIGHT_LINE_SENSOR));
     printf("IR_SENSOR: %d\n", gpioRead(IR_SENSOR));
@@ -133,7 +164,7 @@ int main(void)
     //start motor
     // run(); //Elliot's function
     
-    
+
    //3.System Exit
    //Motor_Stop();
    // DEV_ModuleExit();
