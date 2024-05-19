@@ -31,9 +31,7 @@ void  Handler(int signo)
 
 //While the IR sensor has not detected anything..
 void run(){
-	
 	printf("Running Elliot's function...\n");
-    printf("IR SENSOR VALUE %d/n", gpioRead(IR_SENSOR));
 	Motor_Run(FORWARD, 100, 100, 100, 100);
     int lastDirection = 0; // 1==left, 2==right
 
@@ -181,16 +179,13 @@ int main(void)
     line sensor 0 means no black line detected
     IR sensor 1 means no obstacle detected
     */
-    printf("LEFT_LINE_SENSOR: %d\n", gpioRead(LEFT_LINE_SENSOR));
-    printf("RIGHT_LINE_SENSOR: %d\n", gpioRead(RIGHT_LINE_SENSOR));
-    printf("IR_SENSOR: %d\n", gpioRead(IR_SENSOR));
 
     //start motor
     run(); 
     //testMovements();
     // testIRSensor();
 
-
+    //this handles when when we need to cmd + c to stop the motor
     signal(SIGINT, Handler);
     while(1) {
         
