@@ -348,10 +348,10 @@ void Motor_Stop()
     hat_init(RIGHT_MOTORS);
     PCA9685_SetPwmDutyCycle(PWMA, 0);
     PCA9685_SetPwmDutyCycle(PWMB, 0);
-    DEV_ModuleExit();
+    //DEV_ModuleExit();
     //halting left motors
     hat_init(LEFT_MOTORS);
     PCA9685_SetPwmDutyCycle(PWMA, 0);
     PCA9685_SetPwmDutyCycle(PWMB, 0);
-    DEV_ModuleExit();
+    //DEV_ModuleExit();
 }

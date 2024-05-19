@@ -31,10 +31,10 @@ void  Handler(int signo)
 
 //While the IR sensor has not detected anything..
 void run(){
-	int turning = 0;
-	printf("Running Elliot's function...");
-	Motor_Run(FORWARD, 100, 100, 100, 100);
+	
+	printf("Running Elliot's function...\n");
     printf("IR SENSOR VALUE %d/n", gpioRead(IR_SENSOR));
+	Motor_Run(FORWARD, 100, 100, 100, 100);
     int lastDirection = 0; // 1==left, 2==right
 
         while (gpioRead(IR_SENSOR)){
