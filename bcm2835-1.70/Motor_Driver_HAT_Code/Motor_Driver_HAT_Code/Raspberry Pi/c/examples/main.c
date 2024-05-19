@@ -144,7 +144,17 @@ void testMovements(){
     printf("Moving CIRCLE_LEFT\n");
     Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
     sleep(5);
+}
 
+void testIRSensor(){
+    printf("Before while-loop reading: : %d\n", gpioRead(IR_SENSOR));
+    while(gpioRead(IR_SENSOR)){
+        printf("%d\n", gpioRead(IR_SENSOR));
+        sleep(1);
+    }
+    printf("After breaking while-loop reading: %d\n", gpioRead(IR_SENSOR));
+
+    
 }
 
 void crab(){
@@ -176,8 +186,9 @@ int main(void)
     printf("IR_SENSOR: %d\n", gpioRead(IR_SENSOR));
 
     //start motor
-    run(); 
+    // run(); 
     //testMovements();
+    testIRSensor();
 
 
     signal(SIGINT, Handler);
