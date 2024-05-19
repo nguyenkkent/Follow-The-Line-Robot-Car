@@ -128,16 +128,11 @@ int main(void)
     printf("IR_SENSOR: %d\n", gpioRead(IR_SENSOR));
 
     //start motor
-    //goStraight();
-    //Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
-    //sleep(5);
     run(); //Elliot's function
     
-	if (!gpioRead(IR_SENSOR)){
-        	    Motor_Stop();
-       	 };
- 
+
    //3.System Exit
+   Motor_Stop();
    // DEV_ModuleExit();
     return 0;
 }
