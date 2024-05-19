@@ -163,6 +163,7 @@ int main(void)
 
     //start motor
     // run(); //Elliot's function
+    testMovements();
     
 
    //3.System Exit
