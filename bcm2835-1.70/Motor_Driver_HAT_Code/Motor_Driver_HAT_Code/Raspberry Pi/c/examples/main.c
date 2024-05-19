@@ -164,10 +164,12 @@ int main(void)
     //start motor
     // run(); //Elliot's function
     testMovements();
-    
+
+
+
+    Motor_Stop();
 
    //3.System Exit
-   //Motor_Stop();
    // DEV_ModuleExit();
     return 0;
 }
