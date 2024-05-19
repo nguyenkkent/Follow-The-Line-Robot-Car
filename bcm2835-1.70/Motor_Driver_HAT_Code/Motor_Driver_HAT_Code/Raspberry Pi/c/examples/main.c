@@ -186,7 +186,7 @@ int main(void)
     printf("IR_SENSOR: %d\n", gpioRead(IR_SENSOR));
 
     //start motor
-    // run(); 
+    run(); 
     //testMovements();
     // testIRSensor();
 
