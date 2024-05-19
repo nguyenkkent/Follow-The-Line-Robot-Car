@@ -79,8 +79,8 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Back Left Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
-        //DEV_ModuleExit();
-        
+        DEV_ModuleExit();
+
         hat_init(RIGHT_MOTORS);
         PCA9685_SetPwmDutyCycle(PWMA, FR_speed);
         PCA9685_SetLevel(AIN1, 0);
@@ -90,7 +90,7 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
-        //DEV_ModuleExit();
+        DEV_ModuleExit();
         break;
 
     case BACKWARD:
@@ -298,7 +298,7 @@ void Motor_Run(DIR dir, UWORD FL_speed, UWORD BL_speed, UWORD FR_speed, UWORD BR
         //Back Right Motor
         PCA9685_SetLevel(BIN1, 1);
         PCA9685_SetLevel(BIN2, 0);
-        //DEV_ModuleExit();
+        DEV_ModuleExit();
 
         break;
 

@@ -36,6 +36,7 @@ void run(){
 	Motor_Run(FORWARD, 100, 100, 100, 100);
     printf("IR SENSOR VALUE %d/n", gpioRead(IR_SENSOR));
     int lastDirection = 0; // 1==left, 2==right
+
         while (gpioRead(IR_SENSOR)){
                //..and while the left line sensor has not detected anything..
 		    while (gpioRead(LEFT_LINE_SENSOR) && gpioRead( RIGHT_LINE_SENSOR)){
@@ -53,17 +54,17 @@ void run(){
                     Motor_Run(FORWARD, 100, 100, 100, 100);
                     
                 }
-	        	printf("both sensors detected\n");
+	        	//printf("both sensors detected\n");
 	      		Motor_Run(FORWARD, 100, 100, 100, 100);
 			}
        		while(gpioRead(LEFT_LINE_SENSOR)){
-            		printf("left sensor value %d\n", gpioRead(LEFT_LINE_SENSOR));
+            		//printf("left sensor value %d\n", gpioRead(LEFT_LINE_SENSOR));
                 	Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
                     lastDirection = 1;
         		}
         		//..and while the right line sensor has not detected anything..
         	while(gpioRead(RIGHT_LINE_SENSOR)){
-            		printf("right sensor value %d\n", gpioRead(RIGHT_LINE_SENSOR));
+            		//printf("right sensor value %d\n", gpioRead(RIGHT_LINE_SENSOR));
                 	Motor_Run(CIRCLE_RIGHT, 100, 100, 100, 100);
                     lastDirection = 2;
         		}
@@ -175,11 +176,14 @@ int main(void)
     printf("IR_SENSOR: %d\n", gpioRead(IR_SENSOR));
 
     //start motor
-    run(); //Elliot's function
+    run(); 
     //testMovements();
 
 
-
+    signal(SIGINT, Handler);
+    while(1) {
+        
+    }
     Motor_Stop();
 
    //3.System Exit
