@@ -48,6 +48,8 @@ ${DIR_BIN}/%.o : $(DIR_PCA9685)/%.c
 ${DIR_BIN}/%.o : $(DIR_MotorDriver)/%.c
 	$(CC) $(CFLAGS) -c  $< -o $@ $(LIB) -I $(DIR_Config) -I $(DIR_PCA9685)
 
+run :
+	sudo ./main
 
 clean :
 	rm $(DIR_BIN)/*.* 
