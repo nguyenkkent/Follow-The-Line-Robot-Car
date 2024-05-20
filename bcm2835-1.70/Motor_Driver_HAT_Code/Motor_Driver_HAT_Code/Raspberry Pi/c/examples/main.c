@@ -49,9 +49,9 @@ int crab(){
     }
     clock_t end_time = clock();
     double loop_duration = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
-    printf("Loop duration: %f seconds\n", loop_duration*10);
+    printf("Loop duration: %f seconds\n", loop_duration*50);
 
-    sleep((unsigned int)loop_duration*10);
+    sleep((unsigned int)loop_duration*50);
 
     printf("Cleared front IR sensor\n");
 
