@@ -160,7 +160,13 @@ void testIRSensor(){
     }
     printf("After breaking while-loop reading: %d\n", gpioRead(FRONT_IR_SENSOR));
 
-    
+
+    printf("Testing REAR IR sensor : %d\n", gpioRead(REAR_IR_SENSOR));
+    while(gpioRead(FRONT_IR_SENSOR)){
+    printf("%d\n", gpioRead(FRONT_IR_SENSOR));
+    sleep(1);
+    }
+    printf("REAR IR sensor outside loop : %d\n", gpioRead(REAR_IR_SENSOR));
 }
 
 
@@ -187,18 +193,18 @@ int main(void)
     */
 
     //start motor
-    while (gpioRead(FRONT_IR_SENSOR)){
-        run();
-        //assertion: front IR sensor detects obstacle and run() ends
-        crab();
-        //assertion: there is no longer an obstacle and we hit the line
-    }
+    // while (gpioRead(FRONT_IR_SENSOR)){
+    //     run();
+    //     //assertion: front IR sensor detects obstacle and run() ends
+    //     crab();
+    //     //assertion: there is no longer an obstacle and we hit the line
+    // }
     
 
         
 
     //testMovements();
-    // testIRSensor();
+    testIRSensor();
 
     //this handles when when we need to cmd + c to stop the motor
     signal(SIGINT, Handler);
