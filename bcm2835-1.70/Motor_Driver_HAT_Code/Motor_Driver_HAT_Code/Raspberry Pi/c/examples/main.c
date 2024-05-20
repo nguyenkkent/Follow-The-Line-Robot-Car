@@ -45,8 +45,8 @@ int crab(){
     printf("Cleared front IR sensor\n");
 
     //move forward until we trigger the side rear IR sensor
-    while (gpioRead(!REAR_IR_SENSOR)){
-        printf("Going straight until rear IR sensor triggers\n");
+    printf("Going straight until rear IR sensor triggers\n");
+    while (gpioRead(REAR_IR_SENSOR)){ //1 == no obstacle
         goStraight();
     }
     //make sure the rear of the car clears the obstacle
@@ -193,18 +193,18 @@ int main(void)
     */
 
     //start motor
-    // while (gpioRead(FRONT_IR_SENSOR)){
-    //     run();
-    //     //assertion: front IR sensor detects obstacle and run() ends
-    //     crab();
-    //     //assertion: there is no longer an obstacle and we hit the line
-    // }
+    while (gpioRead(FRONT_IR_SENSOR)){
+        run();
+        //assertion: front IR sensor detects obstacle and run() ends
+        crab();
+        //assertion: there is no longer an obstacle and we hit the line
+    }
     
 
         
 
     //testMovements();
-    testIRSensor();
+    //testIRSensor();
     //this handles when when we need to cmd + c to stop the motor
     signal(SIGINT, Handler);
     while(1) {
