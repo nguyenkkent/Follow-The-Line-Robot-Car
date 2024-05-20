@@ -3,7 +3,8 @@
 
 #define LEFT_LINE_SENSOR 21
 #define RIGHT_LINE_SENSOR 16
-#define IR_SENSOR 20
+#define FRONT_IR_SENSOR 20
+#define REAR_IR_SENSOR 12
 /*
 How to handle when both line sensors are triggered:
 1. Keep track of what the last movement call as (move left or right)
@@ -32,28 +33,28 @@ void  Handler(int signo)
 //While the IR sensor has not detected anything..
 void run(){
 	printf("Running Elliot's function...\n");
-	Motor_Run(FORWARD, 100, 100, 100, 100);
+	goStraight();
     int lastDirection = 0; // 1==left, 2==right
 
-        while (gpioRead(IR_SENSOR)){
+        while (gpioRead(FRONT_IR_SENSOR)){
                //..and while the left line sensor has not detected anything..
 		    while (gpioRead(LEFT_LINE_SENSOR) && gpioRead( RIGHT_LINE_SENSOR)){
                 if (lastDirection==1){
                     while (gpioRead(LEFT_LINE_SENSOR) && gpioRead( RIGHT_LINE_SENSOR)){
                         Motor_Run(CIRCLE_RIGHT,100,100,100,100);
                     }
-                    Motor_Run(FORWARD, 100, 100, 100, 100);
+                    goStraight();
 
                 }
                 else{
                    while (gpioRead(LEFT_LINE_SENSOR) && gpioRead( RIGHT_LINE_SENSOR)){
                         Motor_Run(CIRCLE_LEFT,100,100,100,100);
                     }
-                    Motor_Run(FORWARD, 100, 100, 100, 100);
+                    goStraight();
                     
                 }
 	        	//printf("both sensors detected\n");
-	      		Motor_Run(FORWARD, 100, 100, 100, 100);
+	      		goStraight();
 			}
        		while(gpioRead(LEFT_LINE_SENSOR)){
             		//printf("left sensor value %d\n", gpioRead(LEFT_LINE_SENSOR));
@@ -69,7 +70,7 @@ void run(){
         		//..turning for both is set to 1 so it does not keep moving in that direction
 
         	//printf("go straight again\n");
-        	Motor_Run(FORWARD, 100, 100, 100, 100);
+        	goStraight();
    		}
 
         printf("Run function ending, calling MotorStop()\n");
@@ -82,34 +83,11 @@ void run(){
 
 //This function lets the car move forward.. duh
 void goStraight(){
-    printf("Going forward at 100 speed\n");
+    //printf("Going forward at 100 speed\n");
     Motor_Run(FORWARD, 100, 100, 100, 100);
 }
 
-//This function lets the car move left
-void turnLeft(){
-    printf("Turning left\n");
-    int pwm = 100;
-    while(gpioRead(!LEFT_LINE_SENSOR)){
-        pwm = pwm - 10;
-        Motor_Run(FORWARD, pwm, pwm, 100, 100);
-    }
-    //assertion: car is centered
-    //motor foward 100%
-    Motor_Run(FORWARD, 100, 100, 100, 100);
-} //First we gotta turn the wheels left, and then we move the car forward in the left direction
 
-void turnRight(){
-    printf("Turning right\n");
-    int pwm = 100;
-    while(gpioRead(!RIGHT_LINE_SENSOR)){
-        pwm = pwm - 10;
-        Motor_Run(FORWARD, 100, 100, pwm, pwm);
-    }
-    //assertion: car is centered
-    //motor foward 100%
-    Motor_Run(FORWARD, 100, 100, 100, 100);
-} //First we gotta turn the wheels left, and then we move the car forward in the left direction 
 void testMovements(){
 
     printf("Moving FORWARD\n");
@@ -145,12 +123,12 @@ void testMovements(){
 }
 
 void testIRSensor(){
-    printf("Before while-loop reading: : %d\n", gpioRead(IR_SENSOR));
-    while(gpioRead(IR_SENSOR)){
-        printf("%d\n", gpioRead(IR_SENSOR));
+    printf("Before while-loop reading: : %d\n", gpioRead(FRONT_IR_SENSOR));
+    while(gpioRead(FRONT_IR_SENSOR)){
+        printf("%d\n", gpioRead(FRONT_IR_SENSOR));
         sleep(1);
     }
-    printf("After breaking while-loop reading: %d\n", gpioRead(IR_SENSOR));
+    printf("After breaking while-loop reading: %d\n", gpioRead(FRONT_IR_SENSOR));
 
     
 }
@@ -173,7 +151,7 @@ int main(void)
 	}
     gpioSetMode(LEFT_LINE_SENSOR, PI_INPUT);
     gpioSetMode(RIGHT_LINE_SENSOR, PI_INPUT);
-    gpioSetMode(IR_SENSOR, PI_INPUT);
+    gpioSetMode(FRONT_IR_SENSOR, PI_INPUT);
 
     /*
     line sensor 0 means no black line detected
