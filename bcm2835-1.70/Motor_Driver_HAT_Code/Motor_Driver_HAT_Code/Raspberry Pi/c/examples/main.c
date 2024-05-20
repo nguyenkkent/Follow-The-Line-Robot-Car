@@ -49,9 +49,9 @@ int crab(){
     }
     clock_t end_time = clock();
     double loop_duration = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
-    printf("Loop duration: %f seconds\n", loop_duration*50);
+    printf("Loop duration: %f seconds\n", loop_duration*200);
 
-    sleep((unsigned int)loop_duration*50);
+    sleep((unsigned int)loop_duration*200);
 
     printf("Cleared front IR sensor\n");
 
@@ -204,14 +204,15 @@ int main(void)
     */
 
     //start motor
-    while (gpioRead(FRONT_IR_SENSOR)){
-        run();
-        //assertion: front IR sensor detects obstacle and run() ends
-        crab();
-        //assertion: there is no longer an obstacle and we hit the line
-    }
+    // while (gpioRead(FRONT_IR_SENSOR)){
+    //     run();
+    //     //assertion: front IR sensor detects obstacle and run() ends
+    //     crab();
+    //     //assertion: there is no longer an obstacle and we hit the line
+    // }
     
-
+    run();
+    crab();
         
 
     //testMovements();
