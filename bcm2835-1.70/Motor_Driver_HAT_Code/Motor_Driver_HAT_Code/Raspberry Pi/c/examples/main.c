@@ -63,7 +63,7 @@ int crab(){
         //     break;
         // }
     }
-    sleep(1);
+    sleep(2);
 
 
     printf("Cleared front IR sensor\n");
