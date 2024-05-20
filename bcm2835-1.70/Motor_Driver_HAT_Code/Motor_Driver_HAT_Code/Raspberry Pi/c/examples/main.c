@@ -45,7 +45,7 @@ int crab(){
     clock_t start_time = clock();
     while (!gpioRead(FRONT_IR_SENSOR)){
         printf("Crabing right, GPIO value: %d\n", gpioRead(FRONT_IR_SENSOR));
-        Motor_Run(RIGHT,100,100,100,100);
+        Motor_Run(LEFT,100,100,100,100);
     }
     clock_t end_time = clock();
     double loop_duration = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
@@ -67,7 +67,7 @@ int crab(){
 
     //move left until we hit the line
     while ( !gpioRead(LEFT_LINE_SENSOR) || !gpioRead(RIGHT_LINE_SENSOR) ){
-        Motor_Run(LEFT,100,100,100,100);
+        Motor_Run(RIGHT,100,100,100,100);
     }
     //return execution to the back to main function and run() function
     return 0;
@@ -214,6 +214,7 @@ int main(void)
     
     run();
     crab();
+    run();
         
 
     //testMovements();
