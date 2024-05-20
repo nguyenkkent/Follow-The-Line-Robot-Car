@@ -78,7 +78,7 @@ int crab(){
 //While the IR sensor has not detected anything..
 void run(){
 	printf("Running Elliot's function...\n");
-	goStraight();
+	//goStraight();
     int lastDirection = 0; // 1==left, 2==right
 
         while (gpioRead(FRONT_IR_SENSOR)){
@@ -212,7 +212,7 @@ int main(void)
     //     crab();
     //     //assertion: there is no longer an obstacle and we hit the line
     // }
-    
+    goStraight();
     run();
     crab();
     run();
