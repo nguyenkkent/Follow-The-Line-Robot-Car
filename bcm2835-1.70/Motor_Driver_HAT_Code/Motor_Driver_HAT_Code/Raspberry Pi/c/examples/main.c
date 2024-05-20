@@ -37,6 +37,8 @@ void goStraight(){
 
 int crab(){
     //move right until we clear obstacle
+
+    printf("FRONT_IR_SENSOR before the crab function: %d\n", gpioRead(FRONT_IR_SENSOR));
     while (gpioRead(FRONT_IR_SENSOR)){
         printf("Crabing right\n");
         Motor_Run(RIGHT,100,100,100,100);
