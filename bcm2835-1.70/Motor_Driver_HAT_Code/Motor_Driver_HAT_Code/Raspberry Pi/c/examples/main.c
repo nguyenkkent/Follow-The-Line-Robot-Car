@@ -82,6 +82,8 @@ void run(){
         	goStraight();
    		}
 
+
+
         printf("Run function ending, calling MotorStop()\n");
         Motor_Stop();
 }
@@ -159,11 +161,17 @@ int main(void)
     line sensor 0 means no black line detected
     IR sensor 1 means no obstacle detected
     */
-
+   
     //start motor
-    run(); 
-
+    while (gpioRead(FRONT_IR_SENSOR)){
+        run();
+        //assertion: front IR sensor detects obstacle and run() ends
+        crab();
+        //assertion: there is no longer an obstacle and we hit the line
+    }
     
+
+        
 
     //testMovements();
     // testIRSensor();
