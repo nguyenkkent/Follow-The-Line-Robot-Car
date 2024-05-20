@@ -1,6 +1,7 @@
 
 #include "main.h"
 
+
 #define LEFT_LINE_SENSOR 21
 #define RIGHT_LINE_SENSOR 16
 #define FRONT_IR_SENSOR 20
@@ -39,11 +40,19 @@ int crab(){
     //move right until we clear obstacle
 
     printf("FRONT_IR_SENSOR before the crab function: %d\n", gpioRead(FRONT_IR_SENSOR));
-    while (gpioRead(FRONT_IR_SENSOR)){
+    // for some reason the reading here is 0 while there is an obstacle
+
+    clock_T start_time = clock();
+    while (gpioRead(!FRONT_IR_SENSOR)){
         printf("Crabing right\n");
         Motor_Run(RIGHT,100,100,100,100);
     }
-    sleep(2);
+    end_time = clock();
+    loop_duration = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
+    printf("Loop duration: %f seconds\n", loop_duration);
+
+    sleep((unsigned int)loop_duration);
+
     printf("Cleared front IR sensor\n");
 
     //move forward until we trigger the side rear IR sensor
