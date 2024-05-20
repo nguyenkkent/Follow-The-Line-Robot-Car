@@ -162,8 +162,8 @@ void testIRSensor(){
 
 
     printf("Testing REAR IR sensor : %d\n", gpioRead(REAR_IR_SENSOR));
-    while(gpioRead(FRONT_IR_SENSOR)){
-    printf("%d\n", gpioRead(FRONT_IR_SENSOR));
+    while(gpioRead(REAR_IR_SENSOR)){
+    printf("%d\n", gpioRead(REAR_IR_SENSOR));
     sleep(1);
     }
     printf("REAR IR sensor outside loop : %d\n", gpioRead(REAR_IR_SENSOR));
@@ -205,7 +205,6 @@ int main(void)
 
     //testMovements();
     testIRSensor();
-
     //this handles when when we need to cmd + c to stop the motor
     signal(SIGINT, Handler);
     while(1) {
