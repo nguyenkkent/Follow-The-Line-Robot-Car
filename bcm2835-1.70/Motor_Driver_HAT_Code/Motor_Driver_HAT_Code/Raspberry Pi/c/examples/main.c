@@ -36,7 +36,30 @@ void goStraight(){
 }
 
 void crab(){
+    //move right until we clear obstacle
+    while (gpioRead(FRONT_IR_SENSOR)){
+        printf("Crabing right\n");
+        Motor_Run(RIGHT,100,100,100,100);
+    }
+    sleep(2);
+    printf("Cleared front IR sensor\n");
 
+    //move forward until we trigger the side rear IR sensor
+    while (gpioRead(!REAR_IR_SENSOR)){
+        printf("Going straight until rear IR sensor triggers\n");
+        goStraight();
+    }
+    //make sure the rear of the car clears the obstacle
+    sleep(1);
+    printf("rear IR sensor triggered\n");
+
+    //move left until we hit the line
+    while ( !gpioRead(LEFT_LINE_SENSOR) || !gpioRead(RIGHT_LINE_SENSOR) ){
+        Motor_Run(LEFT,100,100,100,100);
+    }
+    //return execution to the back to main function and run() function
+    return 0;
+    
 }
 
 //While the IR sensor has not detected anything..
@@ -161,7 +184,7 @@ int main(void)
     line sensor 0 means no black line detected
     IR sensor 1 means no obstacle detected
     */
-   
+
     //start motor
     while (gpioRead(FRONT_IR_SENSOR)){
         run();
