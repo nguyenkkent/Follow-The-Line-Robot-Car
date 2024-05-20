@@ -42,13 +42,13 @@ int crab(){
     printf("FRONT_IR_SENSOR before the crab function: %d\n", gpioRead(FRONT_IR_SENSOR));
     // for some reason the reading here is 0 while there is an obstacle
 
-    clock_T start_time = clock();
+    clock_t start_time = clock();
     while (gpioRead(!FRONT_IR_SENSOR)){
         printf("Crabing right\n");
         Motor_Run(RIGHT,100,100,100,100);
     }
-    end_time = clock();
-    loop_duration = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
+    clock_t end_time = clock();
+    double loop_duration = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
     printf("Loop duration: %f seconds\n", loop_duration);
 
     sleep((unsigned int)loop_duration);
