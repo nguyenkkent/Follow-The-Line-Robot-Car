@@ -55,8 +55,8 @@ int crab(){
     // printf("Loop duration ADJUSTED : %f seconds\n", loop_duration_adjusted );
 
     // sleep((unsigned int)loop_duration_adjusted);
-    
-    while(gpioRead(SIDE_IR_SENSOR)){
+
+    while(!gpioRead(SIDE_IR_SENSOR)){
         printf("Crabing right, side GPIO value: %d\n", gpioRead(SIDE_IR_SENSOR));
         Motor_Run(LEFT,100,100,100,100);
     }
