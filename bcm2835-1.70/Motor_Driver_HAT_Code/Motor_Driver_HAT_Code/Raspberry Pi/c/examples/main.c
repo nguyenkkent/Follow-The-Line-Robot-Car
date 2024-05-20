@@ -49,8 +49,9 @@ int crab(){
     }
     clock_t end_time = clock();
     double loop_duration = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
-    double loop_duration_adjusted = loop_duration*50;
-    printf("Loop duration: %f seconds\n", loop_duration_adjusted );
+    double loop_duration_adjusted = loop_duration*10;
+    printf("Loop duration : %f seconds\n", loop_duration_adjusted );
+    printf("Loop duration ADJUSTED : %f seconds\n", loop_duration_adjusted );
 
     sleep((unsigned int)loop_duration_adjusted);
 
