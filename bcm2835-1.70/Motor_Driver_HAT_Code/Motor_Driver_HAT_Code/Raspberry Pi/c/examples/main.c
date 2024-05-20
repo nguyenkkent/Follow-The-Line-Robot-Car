@@ -29,6 +29,15 @@ void  Handler(int signo)
     exit(0);
 }
 
+//This function lets the car move forward
+void goStraight(){
+    //printf("Going forward at 100 speed\n");
+    Motor_Run(FORWARD, 100, 100, 100, 100);
+}
+
+void crab(){
+
+}
 
 //While the IR sensor has not detected anything..
 void run(){
@@ -81,11 +90,7 @@ void run(){
 
 //ALL of the below is an older version of the above. We left it just in-case
 
-//This function lets the car move forward.. duh
-void goStraight(){
-    //printf("Going forward at 100 speed\n");
-    Motor_Run(FORWARD, 100, 100, 100, 100);
-}
+
 
 
 void testMovements(){
@@ -133,11 +138,8 @@ void testIRSensor(){
     
 }
 
-void crab(){
-    /*
-    left front and back right motor set to
-    */
-}
+
+
 int main(void)
 {
     //1.System Initialization
@@ -160,6 +162,9 @@ int main(void)
 
     //start motor
     run(); 
+
+    
+
     //testMovements();
     // testIRSensor();
 
