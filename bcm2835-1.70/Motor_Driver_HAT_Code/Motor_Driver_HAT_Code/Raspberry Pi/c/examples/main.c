@@ -6,6 +6,7 @@
 #define RIGHT_LINE_SENSOR 16
 #define FRONT_IR_SENSOR 20
 #define REAR_IR_SENSOR 12
+#define SIDE_IR_SENSOR 26
 /*
 How to handle when both line sensors are triggered:
 1. Keep track of what the last movement call as (move left or right)
@@ -42,18 +43,25 @@ int crab(){
     printf("FRONT_IR_SENSOR before the crab function: %d\n", gpioRead(FRONT_IR_SENSOR));
     // for some reason the reading here is 0 while there is an obstacle
 
-    clock_t start_time = clock();
-    while (!gpioRead(FRONT_IR_SENSOR)){
-        printf("Crabing right, GPIO value: %d\n", gpioRead(FRONT_IR_SENSOR));
+    // clock_t start_time = clock();
+    // while (!gpioRead(FRONT_IR_SENSOR)){
+    //     printf("Crabing right, GPIO value: %d\n", gpioRead(FRONT_IR_SENSOR));
+    //     Motor_Run(LEFT,100,100,100,100);
+    // }
+    // clock_t end_time = clock();
+    // double loop_duration = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
+    // double loop_duration_adjusted = loop_duration*15;
+    // printf("Loop duration : %f seconds\n", loop_duration);
+    // printf("Loop duration ADJUSTED : %f seconds\n", loop_duration_adjusted );
+
+    // sleep((unsigned int)loop_duration_adjusted);
+    
+    while(gpioRead(SIDE_IR_SENSOR)){
+        printf("Crabing right, side GPIO value: %d\n", gpioRead(SIDE_IR_SENSOR));
         Motor_Run(LEFT,100,100,100,100);
     }
-    clock_t end_time = clock();
-    double loop_duration = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
-    double loop_duration_adjusted = loop_duration*15;
-    printf("Loop duration : %f seconds\n", loop_duration);
-    printf("Loop duration ADJUSTED : %f seconds\n", loop_duration_adjusted );
+    sleep(1);
 
-    sleep((unsigned int)loop_duration_adjusted);
 
     printf("Cleared front IR sensor\n");
 
@@ -199,7 +207,7 @@ int main(void)
     gpioSetMode(RIGHT_LINE_SENSOR, PI_INPUT);
     gpioSetMode(FRONT_IR_SENSOR, PI_INPUT);
     gpioSetMode(REAR_IR_SENSOR, PI_INPUT);
-
+    gpioSetMode(SIDE_IR_SENSOR, PI_INPUT);
     /*
     line sensor 0 means no black line detected
     IR sensor 1 means no obstacle detected
