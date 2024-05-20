@@ -179,6 +179,7 @@ int main(void)
     gpioSetMode(LEFT_LINE_SENSOR, PI_INPUT);
     gpioSetMode(RIGHT_LINE_SENSOR, PI_INPUT);
     gpioSetMode(FRONT_IR_SENSOR, PI_INPUT);
+    gpioSetMode(REAR_IR_SENSOR, PI_INPUT);
 
     /*
     line sensor 0 means no black line detected
