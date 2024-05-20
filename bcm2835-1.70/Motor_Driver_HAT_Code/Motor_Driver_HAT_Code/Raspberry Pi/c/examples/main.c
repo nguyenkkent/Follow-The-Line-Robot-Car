@@ -56,12 +56,12 @@ int crab(){
 
     // sleep((unsigned int)loop_duration_adjusted);
 
-    while(!gpioRead(SIDE_IR_SENSOR) && !gpioRead(FRONT_IR_SENSOR)){
+    while(!gpioRead(SIDE_IR_SENSOR)){
         printf("Crabing right, side GPIO value: %d\n", gpioRead(SIDE_IR_SENSOR));
         Motor_Run(LEFT,100,100,100,100);
-        if (gpioRead(SIDE_IR_SENSOR)){
-            break;
-        }
+        // if (gpioRead(SIDE_IR_SENSOR)){
+        //     break;
+        // }
     }
     sleep(1);
 
