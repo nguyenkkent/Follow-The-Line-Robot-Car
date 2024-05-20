@@ -43,8 +43,8 @@ int crab(){
     // for some reason the reading here is 0 while there is an obstacle
 
     clock_t start_time = clock();
-    while (gpioRead(!FRONT_IR_SENSOR)){
-        printf("Crabing right\n");
+    while (!gpioRead(FRONT_IR_SENSOR)){
+        printf("Crabing right, GPIO value: %d\n", gpioRead(FRONT_IR_SENSOR));
         Motor_Run(RIGHT,100,100,100,100);
     }
     clock_t end_time = clock();
