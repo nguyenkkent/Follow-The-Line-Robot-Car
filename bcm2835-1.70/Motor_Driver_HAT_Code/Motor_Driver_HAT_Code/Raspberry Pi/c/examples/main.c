@@ -153,12 +153,12 @@ void testMovements(){
 }
 
 void testIRSensor(){
-    printf("Before while-loop reading: : %d\n", gpioRead(FRONT_IR_SENSOR));
-    while(gpioRead(FRONT_IR_SENSOR)){
-        printf("%d\n", gpioRead(FRONT_IR_SENSOR));
-        sleep(1);
-    }
-    printf("After breaking while-loop reading: %d\n", gpioRead(FRONT_IR_SENSOR));
+    // printf("Before while-loop reading: : %d\n", gpioRead(FRONT_IR_SENSOR));
+    // while(gpioRead(FRONT_IR_SENSOR)){
+    //     printf("%d\n", gpioRead(FRONT_IR_SENSOR));
+    //     sleep(1);
+    // }
+    // printf("After breaking while-loop reading: %d\n", gpioRead(FRONT_IR_SENSOR));
 
 
     printf("Testing REAR IR sensor : %d\n", gpioRead(REAR_IR_SENSOR));
