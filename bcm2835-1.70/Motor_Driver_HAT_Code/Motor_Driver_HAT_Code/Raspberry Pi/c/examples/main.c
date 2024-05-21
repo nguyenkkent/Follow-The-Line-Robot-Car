@@ -84,8 +84,10 @@ int crab(){
     // }
     //return execution to the back to main function and run() function
     printf("moving LEFT to get back on the line, LEFT_LINE_SENSOR: %d\n", gpioRead(LEFT_LINE_SENSOR));
-    
-    Motor_Run(RIGHT,100,100,100,100);
+    while ( !gpidRead(LEFT_LINE_SENSOR)  && !gpioRead(RIGHT_LINE_SENSOR)){
+        Motor_Run(RIGHT,100,100,100,100);
+    }
+
     if ( !gpioRead(LEFT_LINE_SENSOR) ){
         printf("LEFT sensor triggered, found line\n");
         return 0;
