@@ -78,12 +78,21 @@ int crab(){
     printf("rear IR sensor triggered\n");
 
     //move left until we hit the line
-    while ( !gpioRead(LEFT_LINE_SENSOR) || !gpioRead(RIGHT_LINE_SENSOR) ){
-        Motor_Run(RIGHT,100,100,100,100);
-    }
+    
+    // while ( !gpioRead(LEFT_LINE_SENSOR) || !gpioRead(RIGHT_LINE_SENSOR) ){
+    //     Motor_Run(RIGHT,100,100,100,100);
+    // }
     //return execution to the back to main function and run() function
+
+    Motor_Run(RIGHT,100,100,100,100);
+    if ( gpioRead(LEFT_LINE_SENSOR) ){
+        printf("LEFT sensor triggered, found line\n");
+        return 0;
+    }
+
+    printf("Crabing function returns outside if statement\n");    
     return 0;
-    printf("Crabing function exits\n");
+
 }
 
 //While the IR sensor has not detected anything..
@@ -230,9 +239,9 @@ int main(void)
     // goStraight();
     run();
     crab();
-    while (!gpioRead(LEFT_LINE_SENSOR) ){
+    // while (!gpioRead(LEFT_LINE_SENSOR) ){
 
-    }
+    // }
     run();
     printf("outside of the main driver function\n");        
 
