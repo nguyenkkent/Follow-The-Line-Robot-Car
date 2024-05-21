@@ -63,7 +63,7 @@ int crab(){
         //     break;
         // }
     }
-    sleep(2);
+    sleep(1);
 
 
     printf("Cleared front IR sensor\n");
@@ -217,16 +217,17 @@ int main(void)
     */
 
     //start motor
-    // while (gpioRead(FRONT_IR_SENSOR)){
-    //     run();
-    //     //assertion: front IR sensor detects obstacle and run() ends
-    //     crab();
-    //     //assertion: there is no longer an obstacle and we hit the line
-    // }
     goStraight();
-    run();
-    crab();
-    run();
+    while (gpioRead(FRONT_IR_SENSOR)){
+        run();
+        //assertion: front IR sensor detects obstacle and run() ends
+        crab();
+        //assertion: there is no longer an obstacle and we hit the line
+    }
+    // goStraight();
+    // run();
+    // crab();
+    // run();
         
 
     //testMovements();
