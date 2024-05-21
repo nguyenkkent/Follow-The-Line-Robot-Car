@@ -40,7 +40,7 @@ void goStraight(){
 int crab(){
     //move right until we clear obstacle
 
-    printf("FRONT_IR_SENSOR before the crab function: %d\n", gpioRead(FRONT_IR_SENSOR));
+    // printf("FRONT_IR_SENSOR before the crab function: %d\n", gpioRead(FRONT_IR_SENSOR));
     // for some reason the reading here is 0 while there is an obstacle
 
     // clock_t start_time = clock();
@@ -83,7 +83,7 @@ int crab(){
     //     Motor_Run(RIGHT,100,100,100,100);
     // }
     //return execution to the back to main function and run() function
-
+    printf("moving LEFT to get back on the line, LEFT_LINE_SENSOR: %D\n", gpioRead(LEFT_LINE_SENSOR));
     Motor_Run(RIGHT,100,100,100,100);
     if ( gpioRead(LEFT_LINE_SENSOR) ){
         printf("LEFT sensor triggered, found line\n");
@@ -240,10 +240,10 @@ int main(void)
     run();
     crab();
     // while (!gpioRead(LEFT_LINE_SENSOR) ){
-
+    printf("outside in main, LEFT_LINE_SENSOR: %D\n", gpioRead(LEFT_LINE_SENSOR));
     // }
     run();
-    printf("outside of the main driver function\n");        
+    // printf("outside of the main driver function\n");        
 
     //testMovements();
     //testIRSensor();
