@@ -57,7 +57,7 @@ int crab(){
     // sleep((unsigned int)loop_duration_adjusted);
 
     while(!gpioRead(SIDE_IR_SENSOR)){
-        printf("Crabing right, side GPIO value: %d\n", gpioRead(SIDE_IR_SENSOR));
+        //printf("Crabing right, side GPIO value: %d\n", gpioRead(SIDE_IR_SENSOR));
         Motor_Run(LEFT,100,100,100,100);
         // if (gpioRead(SIDE_IR_SENSOR)){
         //     break;
@@ -74,7 +74,7 @@ int crab(){
         goStraight();
     }
     //make sure the rear of the car clears the obstacle
-    sleep(1);
+    sleep(2);
     printf("rear IR sensor triggered\n");
 
     //move left until we hit the line
@@ -89,50 +89,50 @@ int crab(){
 //While the IR sensor has not detected anything..
 void run(){
 	printf("Running Elliot's function...\n");
-	//goStraight();
+	goStraight();
     int lastDirection = 0; // 1==left, 2==right
 
-        while (gpioRead(FRONT_IR_SENSOR)){
-               //..and while the left line sensor has not detected anything..
-		    while (gpioRead(LEFT_LINE_SENSOR) && gpioRead( RIGHT_LINE_SENSOR)){
-                if (lastDirection==1){
-                    while (gpioRead(LEFT_LINE_SENSOR) && gpioRead( RIGHT_LINE_SENSOR)){
-                        Motor_Run(CIRCLE_RIGHT,100,100,100,100);
-                    }
-                    goStraight();
-
+    while (gpioRead(FRONT_IR_SENSOR)){
+            //..and while the left line sensor has not detected anything..
+        while (gpioRead(LEFT_LINE_SENSOR) && gpioRead( RIGHT_LINE_SENSOR)){
+            if (lastDirection==1){
+                while (gpioRead(LEFT_LINE_SENSOR) && gpioRead( RIGHT_LINE_SENSOR)){
+                    Motor_Run(CIRCLE_RIGHT,100,100,100,100);
                 }
-                else{
-                   while (gpioRead(LEFT_LINE_SENSOR) && gpioRead( RIGHT_LINE_SENSOR)){
-                        Motor_Run(CIRCLE_LEFT,100,100,100,100);
-                    }
-                    goStraight();
-                    
+                goStraight();
+
+            }
+            else{
+                while (gpioRead(LEFT_LINE_SENSOR) && gpioRead( RIGHT_LINE_SENSOR)){
+                    Motor_Run(CIRCLE_LEFT,100,100,100,100);
                 }
-	        	//printf("both sensors detected\n");
-	      		goStraight();
-			}
-       		while(gpioRead(LEFT_LINE_SENSOR)){
-            		//printf("left sensor value %d\n", gpioRead(LEFT_LINE_SENSOR));
-                	Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
-                    lastDirection = 1;
-        		}
-        		//..and while the right line sensor has not detected anything..
-        	while(gpioRead(RIGHT_LINE_SENSOR)){
-            		//printf("right sensor value %d\n", gpioRead(RIGHT_LINE_SENSOR));
-                	Motor_Run(CIRCLE_RIGHT, 100, 100, 100, 100);
-                    lastDirection = 2;
-        		}
-        		//..turning for both is set to 1 so it does not keep moving in that direction
+                goStraight();
+                
+            }
+            //printf("both sensors detected\n");
+            goStraight();
+        }
+        while(gpioRead(LEFT_LINE_SENSOR)){
+                //printf("left sensor value %d\n", gpioRead(LEFT_LINE_SENSOR));
+                Motor_Run(CIRCLE_LEFT, 100, 100, 100, 100);
+                lastDirection = 1;
+            }
+            //..and while the right line sensor has not detected anything..
+        while(gpioRead(RIGHT_LINE_SENSOR)){
+                //printf("right sensor value %d\n", gpioRead(RIGHT_LINE_SENSOR));
+                Motor_Run(CIRCLE_RIGHT, 100, 100, 100, 100);
+                lastDirection = 2;
+            }
+            //..turning for both is set to 1 so it does not keep moving in that direction
 
-        	//printf("go straight again\n");
-        	goStraight();
-   		}
+        //printf("go straight again\n");
+        goStraight();
+    }
 
 
 
-        printf("Run function ending, calling MotorStop()\n");
-        Motor_Stop();
+    printf("Run function ending, calling MotorStop()\n");
+    Motor_Stop();
 }
 
 //End of Elliot's section
@@ -217,13 +217,16 @@ int main(void)
     */
 
     //start motor
-    goStraight();
+    // goStraight();
     while (gpioRead(FRONT_IR_SENSOR)){
         run();
         //assertion: front IR sensor detects obstacle and run() ends
         crab();
         //assertion: there is no longer an obstacle and we hit the line
     }
+
+    printf("outside of the main driver function\n");
+
     // goStraight();
     // run();
     // crab();
