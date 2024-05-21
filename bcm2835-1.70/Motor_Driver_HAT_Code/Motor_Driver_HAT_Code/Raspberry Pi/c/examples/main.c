@@ -83,7 +83,7 @@ int crab(){
     }
     //return execution to the back to main function and run() function
     return 0;
-    
+    printf("Crabing function exits\n");
 }
 
 //While the IR sensor has not detected anything..
@@ -218,20 +218,23 @@ int main(void)
 
     //start motor
     // goStraight();
-    while (gpioRead(FRONT_IR_SENSOR)){
-        run();
-        //assertion: front IR sensor detects obstacle and run() ends
-        crab();
-        //assertion: there is no longer an obstacle and we hit the line
-    }
+    // while (gpioRead(FRONT_IR_SENSOR)){
+    //     run();
+    //     //assertion: front IR sensor detects obstacle and run() ends
+    //     crab();
+    //     //assertion: there is no longer an obstacle and we hit the line
+    // }
 
-    printf("outside of the main driver function\n");
+
 
     // goStraight();
-    // run();
-    // crab();
-    // run();
-        
+    run();
+    crab();
+    while (!gpioRead(LEFT_LINE_SENSOR) ){
+
+    }
+    run();
+    printf("outside of the main driver function\n");        
 
     //testMovements();
     //testIRSensor();
